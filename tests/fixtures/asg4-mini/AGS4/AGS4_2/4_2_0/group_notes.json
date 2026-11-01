@@ -1,0 +1,47 @@
+[
+ {
+  "Group Name": "PROJ",
+  "Group Notes": "PROJ is required in all AGS4 files (Rule 13). \r\nPROJ_ENG should contain the details of the consultant/designer for the project.",
+  "Group Rules": "-"
+ },
+ {
+  "Group Name": "TRAN",
+  "Group Notes": "TRAN is required in all AGS4 files (Rule 14) \r\nTRAN_DLIM shall be included if record linking is used. If TRAN_DLIM is not defined, the default shall be a �|� (pipe symbol).\r\nTRAN_RCON shall be included if record linking is used. If TRAN_RCON is not defined, the default shall be a �+�.\r\nDelimiter and concatenator characters (TRAN_DLIM & TRAN_RCON) need to be defined if Record Link data or multiple concatenated abbreviations are included in the file. These characters cannot be used in IDs and abbreviations that are referred to in data key sets.",
+  "Group Rules": "-"
+ },
+ {
+  "Group Name": "TYPE",
+  "Group Notes": "TYPE is required in all AGS4 files (Rule 17). \r\nThe AGS Data Transfer Format website (www.agsdataformat.com) lists the standard data type definitions.",
+  "Group Rules": "-"
+ },
+ {
+  "Group Name": "UNIT",
+  "Group Notes": "UNIT is required in all AGS4 files (Rule 15) and defines all units used for data headings and within data records (e.g. GCHM, MOND and ELRG).\r\nThe AGS Data Transfer Format website (www.agsdataformat.com) lists the standard unit definitions.\r\n",
+  "Group Rules": "-"
+ },
+ {
+  "Group Name": "ISPT",
+  "Group Notes": "Where appropriate or requested, SPT equipment calibration certificates could be referred to in FILE_FSET.",
+  "Group Rules": "If the test was extended to 100 blows (as described in ISO 22476-3), the data variable under ISPT_ROCK shall be 'Y'. To avoid ambiguity, in cases where the test was not extended the ISPT_ROCK data shall be 'N'."
+ },
+ {
+  "Group Name": "ISTG",
+  "Group Notes": "The IST set of groups is intended for seismic CPT, seismic DMT, and down hole seismic tests.\r\nThis group is intended for the definition of the general equipment setup.\r\nISTG_TESN is used to define an equipment setup.\r\nUse PIPE and CDIA to define the borehole construction.",
+  "Group Rules": "If the test is related to a CPT or DMT ISTG_LINK must be defined."
+ },
+ {
+  "Group Name": "LLPL",
+  "Group Notes": "None",
+  "Group Rules": "-"
+ },
+ {
+  "Group Name": "LOCA",
+  "Group Notes": "LOCA is used to transfer the spatial location of all exploratory locations where data has been recorded. This includes the location of exploratory holes, sampling points or other locations where an observation / test has been made, or a sample / measurement taken.\r\nThe LOCA_TYPE code is used to categorise the type of activity that has occurred at the location.\r\nThe details of exploratory hole construction are contained in the HDPH group. If LOCA_TYPE codes are used that represent the type of exploratory hole construction then they must be correlated with the code or combinations of codes in HDPH_TYPE. Alternatively the code 'EH' could be used to represent an Exploratory Hole the details of which are contained in HDPH.\r\nIf the AGS data file includes information on construction items, then LOCA would also include references to these locations.\r\nLOCA_ID must be unique for the project and should be unique for the site to allow for consolidation of data. Consideration of this needs to be made at the outset of the project. Typically the consulting engineer or designer allows for this in specifying hole or location identifiers.\r\nLOCA_FDEP will generally be null for location points other than exploratory holes, pits, piles or other below ground constructed elements.\r\nTwo headings, LOCA_LOCA and LOCA_CLST, provide a heading for tags of hole groupings. These groupings would typically be specified by the Investigation Supervisor/Designer rather than the Ground Investigation Contractor. LOCA_LOCA should be used to define the grouping of a hole by site location, whereas LOCA_CLST is typically used to indicate investigation phase. If codes are used to define these location or phase data, then the codes shall be defined in the ABBR group.\r\nLOCA_OFFS, LOCA_CNGE and LOCA_ALID allow location data to be presented by chainage and offset to an alignment as typically used for location on road and rail projects. The data included in these headings will probably be expressed in project related units. For example, offset can be defined as positive or negative (e.g. +10 or -12). Chainage on UK railway projects may well be expressed in miles and chains (e.g. 10 mi 1 ch).\r\nLOCA_NATE and LOCA NATN can include recognised international, state or regional projected coordinate systems. The relevant system used should be included in LOCA_GREF.",
+  "Group Rules": "For the transfer of proposed exploratory locations, the designer shall use the LOCA group with LOCA_STAT = 'PROPOSED', noting that the LOCA group does not accommodate both proposed and as-built data for a single position (such as co-ordinates), this is considered a data management issue."
+ },
+ {
+  "Group Name": "SAMP",
+  "Group Notes": "The SAMP group is used to record all samples; e.g. those taken during field sampling or monitoring or sub-samples created in the laboratory.\r\nSAMP_ID has been added to the sample key set. Unique sample identifiers can be used to enhance the process of reintegration of testing results from subcontract laboratories and/or used to contain barcode or pre-made label references.  The addition of the SAMP_ID heading into the SAMP group provides greater flexibility for accommodating different process methodologies. A full explanation of example uses of SAMP_ID are given in on the AGS website.\r\nSAMP_ID does not have to be used and can be NULL (Rule 12).  The remaining descriptive key/label headings can be used on their own.\r\nSAMP_LINK has been added to permit the source of samples to be fully detailed. The SAMP_LINK field is a Record Link (RL) format as defined in Rule 11 and accompanying Note v.\r\nIn selecting abbreviations for use in SAMP_TYPE, allowance should be made for use of additional codification or suffixes to standard abbreviations to reflect the sample types and collection methods applying to measurement / payment purposes.\r\nSAMP_PREP allow details of the sample preparation to be included. This would typically be used to detail the precautions taken with samples for further chemical or environmental testing.\r\nSAMP_LOG and SAMP_DESD allow inclusion of the name of the person describing the sample and date this was carried out as required in BS EN ISO 14688-1, Section 6 and BS EN ISO 14689, Section 5.\r\nSAMP_COND has been included to provide for any comments on condition, representativeness and reliability of the sample which are requirements of EN ISO 14688-1 (Section 6) and BS 5930.  This heading together with the sample recovery SAMP_RECV provide useful data to those specifying laboratory scheduling. Data included if not 100%.\r\nThe requirement of BS EN ISO 14688-1 (Section 6) and BS EN ISO 14689 (Section 5) to record the details of origin, collection and handling of samples are included in the associated groups.\r\nSAMP_ETIM and SAMP_DURN allow for data that describes the duration of sampling event if that is required. This can be important in environmental sampling applications.\r\nSAMP_CAPT provides for description of sample composition in the case of an amalgamated sample.",
+  "Group Rules": "-"
+ }
+]

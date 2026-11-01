@@ -1,0 +1,68 @@
+[
+ {
+  "Action": "Description change",
+  "Group": "LOCA",
+  "Heading": "LOCA_DATM"
+ },
+ {
+  "Action": "Description change",
+  "Group": "LOCA",
+  "Heading": "LOCA_LLZ"
+ },
+ {
+  "Action": "Description change",
+  "Group": "LOCA",
+  "Heading": "LOCA_NATD"
+ },
+ {
+  "Action": "Description change",
+  "Group": "PROJ",
+  "Heading": "PROJ_CLNT",
+  "Comments": "To indicate this is not for a name of an individual"
+ },
+ {
+  "Action": "Description change",
+  "Group": "PROJ",
+  "Heading": "PROJ_CONT",
+  "Comments": "To indicate this is not for a name of an individual"
+ },
+ {
+  "Action": "Description change",
+  "Group": "PROJ",
+  "Heading": "PROJ_ENG",
+  "Comments": "To indicate this is not for a name of an individual engineer"
+ },
+ {
+  "Action": "Example change",
+  "Group": "ISPT",
+  "Heading": "ISPT_REM"
+ },
+ {
+  "Action": "Example change",
+  "Group": "ISPT",
+  "Heading": "ISPT_METH",
+  "Comments": "Corrected reference"
+ },
+ {
+  "Action": "Example change",
+  "Group": "LLPL",
+  "Heading": "LLPL_METH",
+  "Comments": "More current reference"
+ },
+ {
+  "Action": "Example change",
+  "Group": "PROJ",
+  "Heading": "PROJ_MEMO"
+ },
+ {
+  "Action": "Example change",
+  "Group": "TRAN",
+  "Heading": "TRAN_AGS",
+  "Comments": "Updated to current version"
+ },
+ {
+  "Action": "Group Added",
+  "Group": "ISTG",
+  "Heading": "In Situ Seismic Test - General"
+ }
+]

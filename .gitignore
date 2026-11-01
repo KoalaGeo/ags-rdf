@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+build/
+dist-packages/
+
+# Downloaded AGS source snapshots
+.cache/
+
+# Generated RDF / XLSX outputs. These contain the full AGS dictionary content;
+# see README "Licensing of the AGS content" before committing them.
+dist/
