@@ -63,14 +63,18 @@ class BuildResult:
 
 
 def build_release(snapshot: Snapshot, release: Release, out: Path, settings: Settings | None = None,
-                  xlsx: bool = True, validate: bool = True, examples: bool = True) -> BuildResult:
+                  xlsx: bool = True, validate: bool = True, examples: bool = True,
+                  progress: Callable[[str], None] | None = None) -> BuildResult:
+    """Build one release. ``progress`` receives a short message at each step."""
+    step = progress or log.info
     settings = settings or Settings()
+    step(f"loading the AGS {release.version} JSON")
     d = load_dictionary(snapshot, release, settings)
     ctx = BuildContext(d, snapshot, settings)
     v = d.version
     base = Path(out) / v
     res = BuildResult(v, base)
-    log.info("AGS %s: %d groups, %d headings", v, len(d.groups), len(d.headings()))
+    step(f"{len(d.groups)} groups, {len(d.headings())} headings; building ontology, shapes and vocabularies")
 
     ontology = OntologyBuilder(ctx).build()
     shapes = ShapesBuilder(ctx).build()
@@ -79,6 +83,7 @@ def build_release(snapshot: Snapshot, release: Release, out: Path, settings: Set
     for builder in EXTRA_BUILDERS:
         extras.update(builder(ctx))
 
+    step("writing Turtle and N-Triples")
     res.files += write_rdf(ontology, base / f"ags4-{v}-ontology")
     res.files += write_rdf(shapes, base / f"ags4-{v}-shapes")
     vocab_files: dict[str, Path] = {}
@@ -97,21 +102,26 @@ def build_release(snapshot: Snapshot, release: Release, out: Path, settings: Set
     res.files.append(_write_manifest(base, v, vocabs, extras))
 
     if xlsx:
-        for name, ttl in vocab_files.items():
+        for i, (name, ttl) in enumerate(vocab_files.items(), start=1):
             path = base / "vocabs" / f"ags4-{v}-{name}.xlsx"
-            log.info("VocExcel %s", path.name)
+            step(f"VocExcel workbook {i}/{len(vocab_files)}: {path.name}")
             res.files.append(write_vocexcel(ttl, path))
 
     if validate:
+        step("validating shapes (SHACL-SHACL, then running every constraint)")
         res.results += validate_shapes(shapes, f"ags4-{v}-shapes")
-        for name, g in vocabs.items():
+        for i, (name, g) in enumerate(vocabs.items(), start=1):
+            step(f"validating vocabulary {i}/{len(vocabs)}: {name} (VocPub"
+                 + (", VocExcel round trip)" if xlsx else ")"))
             res.results.append(validate_vocab(g, f"ags4-{v}-{name}"))
             xp = base / "vocabs" / f"ags4-{v}-{name}.xlsx"
             if xlsx and xp.exists():
                 res.results.append(check_xlsx_roundtrip(xp, g, xp.name))
         if examples:
+            step("validating the dictionary's example values against the shapes")
             res.results.append(validate_examples(ctx, shapes, ontology))
 
+    step("writing reports")
     res.files += write_reports(ctx, res, base / "reports")
     res.graphs = {"ontology": ontology, "shapes": shapes, **vocabs, **extras}
     return res

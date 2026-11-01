@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import logging
 import sys
+import time
 from pathlib import Path
 
 from . import __version__
@@ -63,21 +64,35 @@ def cmd_build(args) -> int:
     if not releases:
         print("No AGS4 dictionary releases found in the source", file=sys.stderr)
         return 2
+    started = time.monotonic()
+
+    def progress(msg: str) -> None:
+        if not args.quiet:
+            print(f"  [{_elapsed(started)}] {msg}", flush=True)
+
     results = []
-    for rel in releases:
-        print(f"== AGS {rel.version}")
+    for n, rel in enumerate(releases, start=1):
+        print(f"== AGS {rel.version} ({n} of {len(releases)})", flush=True)
         r = build_release(snap, rel, args.out, settings, xlsx=not args.no_xlsx,
-                          validate=not args.no_validate, examples=not args.no_examples)
+                          validate=not args.no_validate, examples=not args.no_examples, progress=progress)
         results.append(r)
         for x in r.results:
             print("  " + x.summary)
-        print(f"  wrote {len(r.files)} files to {r.out_dir}")
+        print(f"  wrote {len(r.files)} files to {r.out_dir}", flush=True)
     write_summary(results, args.out)
     failed = [r.version for r in results if not r.ok]
     if failed:
-        print(f"Validation FAILED for {', '.join(failed)} - see reports/validation.md", file=sys.stderr)
+        print(f"FINISHED in {_elapsed(started)}: validation FAILED for {', '.join(failed)} - see "
+              "reports/validation.md", file=sys.stderr)
         return 1
+    print(f"FINISHED in {_elapsed(started)}: {len(results)} release(s) built, all checks passed. "
+          f"Outputs in {args.out}/")
     return 0
+
+
+def _elapsed(started: float) -> str:
+    s = int(time.monotonic() - started)
+    return f"{s // 60}:{s % 60:02d}"
 
 
 def cmd_check_pdf(args) -> int:
@@ -139,6 +154,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--no-validate", action="store_true", help="skip validation")
     p.add_argument("--no-examples", action="store_true",
                    help="skip validating the dictionary's example values against the shapes")
+    p.add_argument("-q", "--quiet", action="store_true", help="only print the results, not each step")
     p.set_defaults(func=cmd_build)
 
     p = sub.add_parser("check-pdf", help="compare the JSON with the dictionary PDF (needs pdfplumber)")

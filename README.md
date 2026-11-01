@@ -20,6 +20,11 @@ uv run ags-rdf build                    # latest release, scraped from GitLab, i
 uv run ags-rdf build --release all      # 4.0.3, 4.0.4, 4.1, 4.1.1 and 4.2.0
 ```
 
+Each step is printed with the elapsed time, and the run ends with a `FINISHED` line (exit code 0
+when every check passed, 1 otherwise). One release takes about 3 minutes and all five about
+11 minutes on Linux; the dictionary workbook and its validation are the slowest steps. Use `-q` for
+results only.
+
 ### Windows and WSL
 
 Under WSL, don't create the virtual environment on a Windows drive (`/mnt/c/...`). uv then fails
