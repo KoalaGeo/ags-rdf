@@ -147,7 +147,8 @@ class Snapshot:
         }
 
     def write_manifest(self) -> None:
-        (self.root / MANIFEST_NAME).write_text(json.dumps(self.to_manifest(), indent=2) + "\n")
+        (self.root / MANIFEST_NAME).write_text(json.dumps(self.to_manifest(), indent=2) + "\n",
+                                               encoding="utf-8", newline="\n")
 
 
 def _to_date(s: str) -> dt.date:
@@ -295,7 +296,7 @@ def open_local(path: Path, cache_dir: Path | None = None) -> Snapshot:
     root = _find_repo_root(path)
     manifest = root / MANIFEST_NAME
     if manifest.is_file():
-        m = json.loads(manifest.read_text())
+        m = json.loads(manifest.read_text(encoding="utf-8"))
         snap = Snapshot(root=root, origin=m.get("origin", str(root)),
                         project_url=m.get("project_url", f"{GITLAB_URL}/{GITLAB_PROJECT}"),
                         commit=m.get("commit"), committed_date=m.get("committed_date"),

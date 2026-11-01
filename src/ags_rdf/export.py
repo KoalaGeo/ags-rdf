@@ -23,7 +23,8 @@ def write_rdf(g: Graph, stem: Path, formats: tuple[str, ...] = ("ttl", "nt")) ->
             g.serialize(destination=path, format="longturtle", encoding="utf-8")
         elif fmt == "nt":
             lines = g.serialize(format="nt", encoding="utf-8").decode("utf-8").splitlines()
-            path.write_text("\n".join(sorted(set(ln for ln in lines if ln.strip()))) + "\n", encoding="utf-8")
+            path.write_text("\n".join(sorted(set(ln for ln in lines if ln.strip()))) + "\n",
+                            encoding="utf-8", newline="\n")
         else:
             g.serialize(destination=path, format=fmt, encoding="utf-8")
         out.append(path)

@@ -76,7 +76,7 @@ class Settings:
     def load(cls, path: Path | None = None, **overrides) -> "Settings":
         data: dict = {}
         if path is not None:
-            data = tomllib.loads(Path(path).read_text())
+            data = tomllib.loads(Path(path).read_text(encoding="utf-8"))
         for key in ("creator", "publisher", "rights_holder"):
             if key in data:
                 data[key] = Agent(**data[key])

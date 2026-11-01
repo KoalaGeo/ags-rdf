@@ -20,6 +20,31 @@ uv run ags-rdf build                    # latest release, scraped from GitLab, i
 uv run ags-rdf build --release all      # 4.0.3, 4.0.4, 4.1, 4.1.1 and 4.2.0
 ```
 
+### Windows and WSL
+
+Under WSL, don't create the virtual environment on a Windows drive (`/mnt/c/...`). uv then fails
+to install the `ags-rdf` command with `failed to query metadata of file
+.venv/lib/python3.12/site-packages/../../../bin/ags-rdf` (it also warns that it cannot hardlink).
+Either work from the Linux filesystem, which is also much faster for the build:
+
+```bash
+git clone https://github.com/KoalaGeo/ags-rdf.git ~/src/ags-rdf && cd ~/src/ags-rdf
+uv sync
+```
+
+or keep the checkout on `C:` and put only the environment on the Linux side:
+
+```bash
+rm -rf .venv
+export UV_PROJECT_ENVIRONMENT="$HOME/.venvs/ags-rdf"   # add to ~/.bashrc to keep it
+uv sync
+```
+
+Running uv natively in Windows PowerShell (`uv sync`, then `uv run ags-rdf build` in
+`C:\GIT\ags-rdf`) should also work: the code is platform-independent and writes UTF-8 files with
+`\n` line endings everywhere, but it has only been tested on Linux. If uv times out fetching
+packages from PyPI, retry or set `UV_HTTP_TIMEOUT=120`.
+
 ## What gets generated
 
 For each release, in `dist/<version>/`:

@@ -170,5 +170,5 @@ def write_summary(results: list[BuildResult], out: Path) -> Path:
     data = [{"version": r.version, "ok": r.ok, "results": [asdict(x) | {"details": x.details[:10]}
                                                          for x in r.results]} for r in results]
     path = Path(out) / "build-summary.json"
-    path.write_text(json.dumps(data, indent=2) + "\n")
+    path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8", newline="\n")
     return path

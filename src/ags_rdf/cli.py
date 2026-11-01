@@ -92,7 +92,7 @@ def cmd_check_pdf(args) -> int:
         report = compare_pdf(snap, rel, snap.path(args.pdf_path), label=snap.url_for(args.pdf_path))
     out = args.out / f"pdf-check-{args.version}.md"
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(report.to_markdown(), encoding="utf-8")
+    out.write_text(report.to_markdown(), encoding="utf-8", newline="\n")
     print(report.summary())
     print(f"Report: {out}")
     return 0
@@ -107,7 +107,7 @@ def cmd_check_dictionary(args) -> int:
     report = compare_standard_dictionary(snap, rel, args.file)
     out = args.out / f"standard-dictionary-check-{args.version}.md"
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(report.to_markdown(), encoding="utf-8")
+    out.write_text(report.to_markdown(), encoding="utf-8", newline="\n")
     print(report.summary())
     print(f"Report: {out}")
     return 0

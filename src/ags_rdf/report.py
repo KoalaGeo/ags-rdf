@@ -55,10 +55,10 @@ def write_reports(ctx, result, out: Path) -> list[Path]:
                   f"{examples.violations} violations, {examples.warnings} warnings.", ""]
         lines += [f"- {_md_escape(x)}" for x in examples.details]
     p = out / "data-quality.md"
-    p.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    p.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     paths.append(p)
     p = out / "issues.json"
-    p.write_text(json.dumps([asdict(i) for i in issues], indent=1) + "\n", encoding="utf-8")
+    p.write_text(json.dumps([asdict(i) for i in issues], indent=1) + "\n", encoding="utf-8", newline="\n")
     paths.append(p)
 
     # ---- validation
@@ -72,6 +72,6 @@ def write_reports(ctx, result, out: Path) -> list[Path]:
             if r.details and r.check != "examples vs shapes":
                 lines += ["", f"## {r.check} - {r.target}", ""] + [f"- {_md_escape(x)}" for x in r.details]
         p = out / "validation.md"
-        p.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        p.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
         paths.append(p)
     return paths
