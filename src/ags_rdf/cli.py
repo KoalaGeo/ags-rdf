@@ -5,6 +5,7 @@ Commands::
     ags-rdf releases                 list the dictionary releases found in the source
     ags-rdf fetch                    download (scrape) the AGS4 JSON from GitLab into the cache
     ags-rdf build                    generate TTL, N-Triples and VocExcel XLSX (+ validation, reports)
+    ags-rdf convert FILE.ags         convert AGS data files to RDF (--validate to check them)
     ags-rdf check-pdf                compare the JSON with the published AGS dictionary PDF
     ags-rdf check-dictionary FILE    compare the JSON with an AGS standard dictionary (.ags) file
 
@@ -95,6 +96,69 @@ def _elapsed(started: float) -> str:
     return f"{s // 60}:{s % 60:02d}"
 
 
+def cmd_convert(args) -> int:
+    from .builders.common import BuildContext
+    from .convert import (AgsConverter, check_file, declared_type_shapes, default_data_base, pick_release,
+                          read_ags)
+    from .export import write_rdf
+    from .loader import load_dictionary
+    from .releases import discover_releases
+
+    settings = Settings.load(args.config, base_iri=args.base_iri)
+    snap = _snapshot(args)
+    releases = discover_releases(snap)
+    contexts: dict[str, BuildContext] = {}
+    shapes_cache: dict[str, tuple] = {}
+    used_stems: set[Path] = set()
+    worst = 0
+    for path in args.files:
+        ags = read_ags(path)
+        rel = releases[args.version] if args.version != "auto" else pick_release(releases, ags.ags_version)
+        if rel.version not in contexts:
+            contexts[rel.version] = BuildContext(load_dictionary(snap, rel, settings), snap, settings)
+        ctx = contexts[rel.version]
+        base = args.data_base or default_data_base(path)
+        g, issues = AgsConverter(ctx, base).convert(ags)
+        out = args.out or path.with_suffix("")
+        if args.out and len(args.files) > 1:
+            out = args.out / path.stem
+        stem = out.parent / out.name.removesuffix(".ttl").removesuffix(".nt")
+        n = 2
+        while stem in used_stems:  # two inputs with the same file name
+            stem = stem.with_name(f"{stem.name.rsplit('~', 1)[0]}~{n}")
+            n += 1
+        used_stems.add(stem)
+        written = write_rdf(g, stem, tuple(args.format))
+        n_rec = len(set(g.subjects(predicate=ctx.iris.AGSO.dataFile)))
+        print(f"{path}: AGS {ags.ags_version or '?'} -> {rel.version} dictionary; {len(ags.tables)} groups, "
+              f"{n_rec} records, {len(g)} triples -> {', '.join(str(p) for p in written)}")
+        for i in issues:
+            print(f"  note: {i}")
+        if args.validate:
+            from .builders.ontology import OntologyBuilder
+            from .builders.shapes import ShapesBuilder
+            from .validate import shacl_validate
+
+            if rel.version not in shapes_cache:
+                shapes_cache[rel.version] = (ShapesBuilder(ctx).build(), OntologyBuilder(ctx).build())
+            shapes, ont = shapes_cache[rel.version]
+            r = shacl_validate(g, shapes, path.name, f"AGS {rel.version} shapes", ont=ont, limit=100_000,
+                               ignore_shapes=declared_type_shapes(ags, ctx.dictionary, ctx.iris))
+            file_issues = check_file(ags, ctx.dictionary)
+            errors = [i for i in file_issues if i.severity == "error"]
+            lines = [f"[{i.severity}] Rule {i.category.split('-')[1]}: {i.message}" for i in file_issues]
+            lines += r.details
+            report = stem.parent / f"{stem.name}.validation.txt"
+            report.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
+            ok = r.violations == 0 and not errors
+            print(f"  {'valid' if ok else 'NOT valid'}: SHACL {r.violations} violations, {r.warnings} warnings; "
+                  f"file rules {len(errors)} errors, {len(file_issues) - len(errors)} warnings (details: {report})")
+            for line in lines[:args.show]:
+                print(f"    {line}")
+            worst = max(worst, 0 if ok else 1)
+    return worst
+
+
 def cmd_check_pdf(args) -> int:
     from .checks.pdf import compare_pdf
     from .releases import discover_releases
@@ -156,6 +220,22 @@ def main(argv: list[str] | None = None) -> int:
                    help="skip validating the dictionary's example values against the shapes")
     p.add_argument("-q", "--quiet", action="store_true", help="only print the results, not each step")
     p.set_defaults(func=cmd_build)
+
+    p = sub.add_parser("convert", help="convert AGS data files (.ags) to RDF, optionally validating them")
+    _common(p)
+    p.add_argument("files", type=Path, nargs="+", help="AGS4 data files")
+    p.add_argument("--release", "-r", dest="version", default="auto",
+                   help="dictionary release to use; 'auto' (default) follows the file's TRAN_AGS")
+    p.add_argument("--out", "-o", type=Path,
+                   help="output file (one input) or folder (several); default: next to each input")
+    p.add_argument("--format", "-f", nargs="+", default=["ttl"], choices=["ttl", "nt", "xml", "json-ld"],
+                   help="output format(s) (default: ttl)")
+    p.add_argument("--data-base", help="base IRI for the records (default: https://example.org/ags/<file>/)")
+    p.add_argument("--validate", action="store_true", help="validate against the release's SHACL shapes")
+    p.add_argument("--show", type=int, default=10, help="validation messages to print (default 10)")
+    p.add_argument("--config", type=Path, help="TOML settings file")
+    p.add_argument("--base-iri", help="base IRI of the AGS model (must match the shapes you use)")
+    p.set_defaults(func=cmd_convert)
 
     p = sub.add_parser("check-pdf", help="compare the JSON with the dictionary PDF (needs pdfplumber)")
     _common(p)

@@ -33,7 +33,7 @@ META_TERMS: list[tuple[str, URIRef, str, str, str | None, URIRef | str | None]] 
     ("groupClass", OWL.AnnotationProperty, "group class",
      "Links a group concept in the dictionary vocabulary to the OWL class of its records.", None, None),
     ("property", OWL.AnnotationProperty, "heading property",
-     "Links a heading concept in the dictionary vocabulary to the OWL property used for its values.",
+     "The OWL property used for a heading's values (from a heading concept or a field definition).",
      None, None),
     ("dictionaryEntry", OWL.AnnotationProperty, "dictionary entry",
      "Links an OWL class, OWL property or SHACL shape to the concept describing it in the AGS "
@@ -54,6 +54,26 @@ META_TERMS: list[tuple[str, URIRef, str, str, str | None, URIRef | str | None]] 
     ("heading", OWL.AnnotationProperty, "heading",
      "The heading concept an abbreviation (or abbreviation list) belongs to.", None, None),
     ("rule", OWL.AnnotationProperty, "rule", "An AGS rule (concept in the rules vocabulary) a shape implements.",
+     None, None),
+    # --- terms used when converting AGS data files (ags_rdf.convert)
+    ("DataFile", OWL.Class, "AGS data file", "An AGS data file converted to RDF.", None, None),
+    ("dataFile", OWL.ObjectProperty, "data file", "The AGS data file a record was read from.",
+     "Record", "DataFile"),
+    ("agsVersion", OWL.DatatypeProperty, "AGS version",
+     "The AGS edition a data file declares in TRAN_AGS.", "DataFile", XSD.string),
+    ("FieldDefinition", OWL.Class, "field definition",
+     "The UNIT and TYPE a data file gives for one HEADING of one GROUP (AGS Rule 8). File values are "
+     "typed using these, not the dictionary's suggested unit and type.", None, None),
+    ("field", OWL.ObjectProperty, "field", "A field definition of a data file.", "DataFile", "FieldDefinition"),
+    ("group", OWL.AnnotationProperty, "group", "The group class a field definition belongs to.", None, None),
+    ("unit", OWL.AnnotationProperty, "unit",
+     "The UNIT declared in a data file (a units concept, or a literal for non-standard units).", None, None),
+    ("type", OWL.AnnotationProperty, "type",
+     "The TYPE declared in a data file (a data types concept, or a literal).", None, None),
+    ("position", OWL.AnnotationProperty, "position", "Position of a heading in a group's HEADING row.",
+     None, None),
+    ("userDefined", OWL.AnnotationProperty, "user defined",
+     "True for a group or heading not in the AGS dictionary (defined in the file's DICT group, Rule 18).",
      None, None),
 ]
 
@@ -86,7 +106,7 @@ class OntologyBuilder:
             if domain:
                 g.add((t, RDFS.domain, AGSO[domain]))
             if range_:
-                g.add((t, RDFS.range, AGSO[range_] if isinstance(range_, str) else range_))
+                g.add((t, RDFS.range, range_ if isinstance(range_, URIRef) else AGSO[range_]))
         g.add((AGSO.dictionaryEntry, RDFS.subPropertyOf, RDFS.seeAlso))
 
     def _model(self, g: Graph) -> None:

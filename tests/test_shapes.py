@@ -67,9 +67,9 @@ def test_valid_data_conforms(ctx, shapes, ontology):
     (lambda d: d.g.remove((URIRef("urn:test:proj"), d.A.PROJ_ID, None)), "Less than 1 values"),
     (lambda d: d.rec("s2", "SAMP", "bh1", LOCA_ID="BH9"), "no matching LOCA parent"),
     (lambda d: d.rec("s3", "SAMP", None, LOCA_ID="BH1"), "no matching LOCA parent"),
-    (lambda d: d.rec("s4", "SAMP", "bh1", LOCA_ID="BH1", SAMP_TOP="deep"), "NumericValue"),
-    (lambda d: d.rec("spt2", "ISPT", "bh1", LOCA_ID="BH1", ISPT_TOP=Literal("3.00", datatype=XSD.decimal),
-                     ISPT_ROCK="Yes"), "YesNoValue"),
+    # null KEY fields are allowed (Rule 10a) but the combination must still be unique
+    (lambda d: [d.rec(n, "SAMP", "bh1", LOCA_ID="BH1", SAMP_TOP=Literal("3.00", datatype=XSD.decimal),
+                      SAMP_TYPE="B", SAMP_ID="S9") for n in ("n1", "n2")], "same combination of KEY fields"),
     (lambda d: d.g.add((URIRef("urn:test:s1"), d.A.SAMP_REF, Literal("2"))), "More than 1 values"),
     (lambda d: d.rec("s5", "SAMP", "proj", LOCA_ID="BH1", SAMP_ID="S5"), "Value does not have class"),
 ])
@@ -80,12 +80,16 @@ def test_violations(ctx, shapes, ontology, mutate, expect):
     assert v > 0 and any(expect in x for x in details), details
 
 
-@pytest.mark.parametrize("values,expect", [
-    ({"LOCA_NATE": Literal("523145.1", datatype=XSD.decimal)}, "suggested format 2DP"),
-    ({"LOCA_TYPE": "ZZ"}, "not a standard AGS 4.2.0 abbreviation"),
+@pytest.mark.parametrize("group,values,expect", [
+    ("LOCA", {"LOCA_ID": "BH2", "LOCA_NATE": Literal("523145.1", datatype=XSD.decimal)}, "suggested format 2DP"),
+    ("LOCA", {"LOCA_ID": "BH2", "LOCA_TYPE": "ZZ"}, "not a standard AGS 4.2.0 abbreviation"),
+    # the dictionary type is only a suggestion (Rule 8), so these are warnings, not violations
+    ("SAMP", {"LOCA_ID": "BH1", "SAMP_TOP": "deep", "SAMP_ID": "S2"}, "not of the suggested type 2DP (a number)"),
+    ("ISPT", {"LOCA_ID": "BH1", "ISPT_TOP": Literal("3.00", datatype=XSD.decimal), "ISPT_ROCK": "Yes"},
+     "not of the suggested type YN (one of Y, N)"),
 ])
-def test_warnings(ctx, shapes, ontology, values, expect):
+def test_warnings(ctx, shapes, ontology, group, values, expect):
     data = valid_data(ctx)
-    data.rec("bh2", "LOCA", "proj", LOCA_ID="BH2", **values)
+    data.rec("extra", group, "bh1" if group != "LOCA" else "proj", **values)
     v, w, details = run(ctx, shapes, ontology, data)
-    assert v == 0 and w == 1 and expect in details[0], details
+    assert v == 0 and w >= 1 and any(expect in x for x in details), details

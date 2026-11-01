@@ -5,6 +5,16 @@
   "Group Rules": "-"
  },
  {
+  "Group Name": "ABBR",
+  "Group Notes": "ABBR is required in all AGS4 data files and describes all abbreviations used in headings defined by the PA data type (Rule 16).\r\nThe AGS Format website (www.agsdataformat.com) lists the standard abbreviations. \r\nAdditional abbreviations, used in any heading in the file, must be defined in this group. \r\nABBR_LIST details the list from which the ABBR_CODE originates. For standard AGS headings this value would be �AGS4� to refer to the AGS website. For user-defined abbreviations, use the organisation identifier in ABBR_LIST.",
+  "Group Rules": "-"
+ },
+ {
+  "Group Name": "DICT",
+  "Group Notes": "DICT is required in all AGS4 files where user defined groups and/or headings are specified (Rule 18).\r\nDICT_STAT defines the status of the heading. This shall contain the data 'KEY', 'REQUIRED', 'KEY+REQUIRED' or 'OTHER', where OTHER denotes the data field is neither key nor required (Rule 10).\r\nDICT_PGRP allows for inclusion of the parent group name when the DICT_TYPE is \"GROUP\". This permits data integrity checking where data files include user defined groups.",
+  "Group Rules": "If the DICT_TYPE is HEADING, there shall be data variables present for DICT_GRP, DICT_HDNG, DICT_STAT, DICT_UNIT, DICT_DTYP and DICT_DESC. \r\nIf the DICT_TYPE is GROUP, there shall be data variables present for DICT_GRP and DICT_DESC and the DICT_HDNG, DICT_STAT, DICT_DTYP and DICT_UNIT headings shall contain NULL values.\r\nData type for data field heading DICT_UNIT shall not be changed from PU."
+ },
+ {
   "Group Name": "TRAN",
   "Group Notes": "TRAN is required in all AGS4 files (Rule 14) \r\nTRAN_DLIM shall be included if record linking is used. If TRAN_DLIM is not defined, the default shall be a �|� (pipe symbol).\r\nTRAN_RCON shall be included if record linking is used. If TRAN_RCON is not defined, the default shall be a �+�.\r\nDelimiter and concatenator characters (TRAN_DLIM & TRAN_RCON) need to be defined if Record Link data or multiple concatenated abbreviations are included in the file. These characters cannot be used in IDs and abbreviations that are referred to in data key sets.",
   "Group Rules": "-"

@@ -190,16 +190,63 @@ uv run kurra shacl validate examples/ags4-sample.ttl -s dist/4.2.0/ags4-4.2.0-sh
 |---|---|---|
 | at most one value per field | Violation | one VARIABLE per FIELD |
 | REQUIRED fields present | Violation | Rule 10b |
-| value in the suggested type's value space (numeric, date/time, Y/N…) | Violation | data TYPEs, Rule 8 |
-| unique combination of KEY fields | Violation | Rule 10a (SPARQL constraint) |
+| unique combination of KEY fields | Violation | Rule 10a (SPARQL constraints) |
 | parent row is of the parent group; shared key fields match it | Violation | Rule 10c (SPARQL constraint) |
 | only one PROJ / TRAN row | Violation | Rules 13, 14 (derived from the rule text) |
-| exact suggested format, e.g. two decimal places for 2DP | Warning | files may declare another TYPE (Rule 8) |
+| value of the suggested type (number, date/time, Y/N…) | Warning | dictionary types are suggestions; a file may declare another TYPE (Rule 8) |
+| exact suggested format, e.g. two decimal places for 2DP | Warning | as above |
 | standard abbreviation / unit / data type code | Warning | non-standard values allowed if defined in ABBR/UNIT/TYPE (Rules 15–17) |
 
-KEY fields may be null (Rule 10a), so they are only `sh:minCount 1` when also REQUIRED. The AGS→XSD
-type mapping lives in one table, [`datatypes.py`](src/ags_rdf/datatypes.py). Regular expressions use
-XSD/XPath syntax so they work in any SHACL engine, not only pySHACL.
+KEY fields may be null (Rule 10a), so they are only `sh:minCount 1` when also REQUIRED. Rules that
+depend on what a particular file declares (its TYPE/UNIT rows and ABBR/UNIT/TYPE groups) are checked
+by the converter instead (next section). The AGS→XSD type mapping lives in one table,
+[`datatypes.py`](src/ags_rdf/datatypes.py). Regular expressions use XSD/XPath syntax so they work in
+any SHACL engine, not only pySHACL.
+
+The KEY check is written for speed in pySHACL/rdflib: rows with all KEY fields filled are matched by
+a join on the group's own key values, and rows with a null KEY field by a guarded comparison. During
+validation, `ags-rdf` also caches parsed SPARQL (pySHACL otherwise re-parses each query for every
+row). A 3,000-row MOND table converts and validates in about 30 seconds.
+
+## Converting AGS files to RDF
+
+```bash
+uv run ags-rdf convert my-file.ags --validate
+```
+
+This writes `my-file.ttl` (add `--format ttl nt` for N-Triples too) and, with `--validate`,
+`my-file.validation.txt`. Several files can be given at once (`-o folder/` for the outputs). The
+dictionary release follows the file's `TRAN_AGS` (`4.0` uses 4.0.4, `4.1` uses 4.1, …); override it
+with `--release 4.1.1`. Use `--data-base https://your.org/ags/<project>/` for record identifiers you
+control (the default is `https://example.org/ags/<file name>/`).
+
+| AGS | RDF |
+|---|---|
+| DATA row | record `<base>SAMP/BH1/1.50/1/B/S1` (built from the KEY fields; `_` for a null key) typed `ags:SAMP` |
+| VARIABLE | `ags:SAMP_TOP "1.50"^^xsd:decimal`, typed by the file's TYPE (and UNIT for dates); nulls are omitted |
+| key link to the parent group | `agso:parent <base>LOCA/BH1` |
+| UNIT and TYPE rows | an `agso:FieldDefinition` per heading (`agso:unit`, `agso:type`, `agso:position`) on the `agso:DataFile` |
+| user-defined group/heading (DICT) | terms under `<base>def/`, labelled from `DICT_DESC` |
+
+Values that do not fit their type are kept as plain strings, never "corrected", so validation reports
+them. `--validate` combines the SHACL shapes with checks of the file itself, reported with line
+numbers:
+
+| Rule | Checked by the converter |
+|---|---|
+| 8 | each value fits the TYPE declared in the file (errors), with the declared number of decimal places (warnings) |
+| 10a / 10c | repeated KEY combinations; rows without a matching parent row |
+| 13, 14, 15, 17 | PROJ, TRAN, UNIT and TYPE groups present |
+| 15 | units in UNIT rows and PU fields are listed in the UNIT group |
+| 16 | codes in PA fields (split on `TRAN_RCON`, default `+`) are listed in ABBR |
+| 17 | types in TYPE rows are listed in the TYPE group |
+
+"Suggested type/format" warnings are left out for fields whose declared TYPE differs from the
+dictionary's suggestion, since the converter checks those values against the declared TYPE.
+
+All 19 example files in the ASG4 repository (`AGS4/examples/`, AGS 4.0) convert and validate with
+no violations and no rule errors. The remaining warnings are real: for example, units `degC` (the
+standard unit is `DegC`; units are case-sensitive), `Rad` and `-`.
 
 Each property shape also carries documentation: `sh:name`, `sh:description`, `sh:order`,
 `skos:example`, `agso:dataType`, `agso:suggestedUnit`, `agso:isKey`, `agso:isRequired`,
