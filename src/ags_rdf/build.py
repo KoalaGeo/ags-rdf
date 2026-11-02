@@ -6,7 +6,9 @@ Output layout (``<out>/<version>/``)::
     ags4-<v>-shapes.ttl|nt        SHACL shapes
     vocabs/ags4-<v>-<name>.ttl|nt|xlsx
                                   SKOS vocabularies (VocPub) + VocExcel workbooks
-    ags4-<v>-all.ttl|nt           everything above in one graph
+    ags4-<v>-all.ttl|nt           everything above in one graph (not a vocabulary: for triplestores)
+    background/ags4-<v>-labels.ttl
+                                  labels for every IRI used (Prez/prez-lite "background" labels)
     catalogue.ttl                 dcat:Catalog of the above
     manifest.ttl                  Prez/KGM manifest (for kgm validate / kgm load)
     reports/                      data-quality and validation reports (Markdown + JSON)
@@ -33,6 +35,7 @@ from .builders.shapes import ShapesBuilder
 from .builders.vocabularies import VocabularyBuilder
 from .config import Settings
 from .export import write_rdf, write_vocexcel
+from .labels import build_labels
 from .loader import load_dictionary
 from .releases import Release
 from .report import write_reports
@@ -98,6 +101,8 @@ def build_release(snapshot: Snapshot, release: Release, out: Path, settings: Set
     for g in [ontology, shapes, *vocabs.values(), *extras.values()]:
         combined += g
     res.files += write_rdf(combined, base / f"ags4-{v}-all")
+    labels = build_labels([ontology, *vocabs.values(), *extras.values()], settings.language)
+    res.files += write_rdf(labels, base / "background" / f"ags4-{v}-labels", ("ttl",))
     res.files.append(_write_catalogue(ctx, base, vocabs))
     res.files.append(_write_manifest(base, v, vocabs, extras))
 
@@ -169,6 +174,8 @@ def _write_manifest(base: Path, v: str, vocabs: dict, extras: dict) -> Path:
              "SKOS ConceptSchemes (VocPub profile), one per file")
     resource("Data model and shapes", [f"ags4-{v}-ontology.ttl", f"ags4-{v}-shapes.ttl"],
              MRR.ResourceModel, "OWL data model and SHACL shapes for AGS data in RDF")
+    resource("Background labels", ["background/*.ttl"], MRR.IncompleteCatalogueAndResourceLabels,
+             "Labels for the IRIs used by the vocabularies, ontology and shapes")
     if extras:
         resource("Extras", ["extras/*.ttl"], MRR.ResourceData, "Additional generated graphs")
     path = base / "manifest.ttl"
