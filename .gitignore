@@ -13,3 +13,5 @@ dist-packages/
 # Generated RDF / XLSX outputs. These contain the full AGS dictionary content;
 # see README "Licensing of the AGS content" before committing them.
 dist/
+
+.vscode/
