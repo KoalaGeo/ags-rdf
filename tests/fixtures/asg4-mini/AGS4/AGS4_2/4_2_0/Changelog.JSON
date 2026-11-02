@@ -34,6 +34,11 @@
  },
  {
   "Action": "Example change",
+  "Group": "ABBR",
+  "Heading": "ABBR_LIST"
+ },
+ {
+  "Action": "Example change",
   "Group": "ISPT",
   "Heading": "ISPT_REM"
  },
@@ -59,10 +64,5 @@
   "Group": "TRAN",
   "Heading": "TRAN_AGS",
   "Comments": "Updated to current version"
- },
- {
-  "Action": "Group Added",
-  "Group": "ISTG",
-  "Heading": "In Situ Seismic Test - General"
  }
 ]

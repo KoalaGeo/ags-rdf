@@ -1,5 +1,302 @@
 [
  {
+  "Group": "DICT_DTYP",
+  "Code": "0DP",
+  "Description": "Value; required number of decimal places, 0",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "0SCI",
+  "Description": "Scientific Notation; required number of decimal places, 0",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "1DP",
+  "Description": "Value; required number of decimal places, 1",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "1SCI",
+  "Description": "Scientific Notation; required number of decimal places, 1",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "1SF",
+  "Description": "Value; required number of significant figures, 1",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "2DP",
+  "Description": "Value; required number of decimal places, 2",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "2SCI",
+  "Description": "Scientific Notation; required number of decimal places, 2",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "2SF",
+  "Description": "Value; required number of significant figures, 2",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "3DP",
+  "Description": "Value; required number of decimal places, 3",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "3SCI",
+  "Description": "Scientific Notation; required number of decimal places, 3",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "3SF",
+  "Description": "Value; required number of significant figures, 3",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "4DP",
+  "Description": "Value; required number of decimal places, 4",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "4SCI",
+  "Description": "Scientific Notation; required number of decimal places, 4",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "4SF",
+  "Description": "Value; required number of significant figures, 4",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "DMS",
+  "Description": "Degrees:Minutes:Seconds",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "DT",
+  "Description": "Date time in international format",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "ID",
+  "Description": "Unique Identifier",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "MC",
+  "Description": "British Standard BS1377 : Part 2 reported moisture content",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "PA",
+  "Description": "Text listed in ABBR Group",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "PT",
+  "Description": "Text listed in TYPE Group",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "PU",
+  "Description": "Text listed in UNIT Group",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "RL",
+  "Description": "Record link",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "T",
+  "Description": "Elapsed time",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "U",
+  "Description": "Value with variable format",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "X",
+  "Description": "Text",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "XN",
+  "Description": "Text / numeric",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "YN",
+  "Description": "Y or N or NULL",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_STAT",
+  "Code": "KEY",
+  "Description": "Key field",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_STAT",
+  "Code": "OTHER",
+  "Description": "Other field",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_STAT",
+  "Code": "REQUIRED",
+  "Description": "Required field",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_STAT",
+  "Code": "DEPRECATED",
+  "Description": "Deprecated field",
+  "Status": "Approved",
+  "Date": "23/04/2025",
+  "Comments": "",
+  "Version": "4.1,4.2"
+ },
+ {
+  "Group": "DICT_TYPE",
+  "Code": "GROUP",
+  "Description": "Flag to indicate definition is a GROUP",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_TYPE",
+  "Code": "HEADING",
+  "Description": "Flag to indicate definition is a HEADING",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
   "Group": "LOCA_STAT",
   "Code": "DRAFT",
   "Description": "Draft data",

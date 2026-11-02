@@ -7,7 +7,7 @@ from ags_rdf.sources import open_local
 
 def test_groups_and_headings(dictionary):
     d = dictionary
-    assert list(d.groups)[:4] == ["PROJ", "TRAN", "TYPE", "UNIT"]  # dictionary order
+    assert list(d.groups)[:5] == ["PROJ", "ABBR", "DICT", "TRAN", "TYPE"]  # dictionary order
     loca, samp = d.groups["LOCA"], d.groups["SAMP"]
     assert loca.description == "Location Details"
     assert samp.parent == "LOCA" and loca.parent == "PROJ"

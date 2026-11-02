@@ -13,6 +13,7 @@
 from __future__ import annotations
 
 import logging
+from contextlib import contextmanager
 from dataclasses import dataclass, field
 from importlib.resources import files
 from pathlib import Path
@@ -39,11 +40,13 @@ class Result:
                 f"{self.warnings} warnings, {self.infos} infos")
 
 
-def _results(report: Graph, limit: int = 50) -> tuple[int, int, int, list[str]]:
+def _results(report: Graph, limit: int = 50, ignore_shapes: set | None = None) -> tuple[int, int, int, list[str]]:
     counts = {SH.Violation: 0, SH.Warning: 0, SH.Info: 0}
     details = []
     for r in report.subjects(RDF.type, SH.ValidationResult):
         if (None, SH.detail, r) in report:  # nested result of sh:node etc.; counted via its parent
+            continue
+        if ignore_shapes and report.value(r, SH.sourceShape) in ignore_shapes:
             continue
         sev = report.value(r, SH.resultSeverity)
         counts[sev] = counts.get(sev, 0) + 1
@@ -55,15 +58,46 @@ def _results(report: Graph, limit: int = 50) -> tuple[int, int, int, list[str]]:
     return counts[SH.Violation], counts[SH.Warning], counts[SH.Info], sorted(details)
 
 
+@contextmanager
+def cached_sparql():
+    """Cache parsed SPARQL queries while validating.
+
+    pySHACL passes each SPARQL constraint to rdflib as text once per focus node,
+    and rdflib parses and translates the text on every call; for large groups
+    that dominates validation time. Within this context a query text is parsed
+    once. (rdflib Query objects are designed to be reused with different
+    initial bindings.)
+    """
+    from rdflib.plugins.sparql import processor
+
+    original = processor.SPARQLProcessor.query
+    cache: dict = {}
+
+    def query(self, strOrQuery, initBindings=None, initNs=None, base=None, DEBUG=False):  # noqa: N803
+        if isinstance(strOrQuery, str):
+            key = (strOrQuery, base, tuple(sorted((initNs or {}).items())))
+            if key not in cache:
+                cache[key] = processor.translateQuery(processor.parseQuery(strOrQuery), base, initNs)
+            strOrQuery = cache[key]
+        return original(self, strOrQuery, initBindings, initNs, base, DEBUG)
+
+    processor.SPARQLProcessor.query = query
+    try:
+        yield
+    finally:
+        processor.SPARQLProcessor.query = original
+
+
 def shacl_validate(data: Graph, shapes: Graph, target: str, check: str, advanced: bool = False,
-                   ont: Graph | None = None, limit: int = 50) -> Result:
+                   ont: Graph | None = None, limit: int = 50, ignore_shapes: set | None = None) -> Result:
     import kurra.shacl
 
     data_graph = data if ont is None else data + ont
-    conforms, report, text = kurra.shacl.validate(data_graph, shapes, advanced=advanced)
+    with cached_sparql():
+        conforms, report, text = kurra.shacl.validate(data_graph, shapes, advanced=advanced)
     if not isinstance(report, Graph):  # pySHACL returns a ValidationFailure on runtime errors
         return Result(target, check, False, 1, details=[str(report)])
-    v, w, i, details = _results(report, limit)
+    v, w, i, details = _results(report, limit, ignore_shapes)
     return Result(target, check, v == 0, v, w, i, details)
 
 

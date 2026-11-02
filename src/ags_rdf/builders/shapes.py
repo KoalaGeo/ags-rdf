@@ -7,23 +7,24 @@ severity:
 =================================  ==========  =============================================
 Check                              Severity    Source
 =================================  ==========  =============================================
-at most one value per field        Violation   AGS file structure (one VARIABLE per FIELD)
+at most one literal per field      Violation   AGS file structure (one VARIABLE per FIELD)
 REQUIRED field present (*R / R)    Violation   Rule 10b
-value is a literal of the type's   Violation   suggested TYPE value space (Rule 8)
-value space (numeric, date...)
-YN values are Y or N               Violation   data type YN
 unique combination of KEY fields   Violation   Rule 10a (SPARQL constraint)
 parent link targets parent group   Violation   Rule 10c
 key fields shared with the parent  Violation   Rule 10c (SPARQL constraint)
 match the parent record
 single row in PROJ / TRAN          Violation   Rules 13, 14 (derived from the rule text)
-exact suggested format (e.g. 2DP)  Warning     suggested TYPE; files may declare another (Rule 8)
+value of the suggested type        Warning     the dictionary TYPE is a suggestion; files may
+(number, date, Y/N...)                         declare another TYPE (Rule 8)
+exact suggested format (e.g. 2DP)  Warning     as above
 standard abbreviation / unit /     Warning     Rules 15, 16, 17 - non-standard values are
 data type code                                 allowed when defined in ABBR / UNIT / TYPE
 =================================  ==========  =============================================
 
 KEY fields may be null (Rule 10a) so they are not ``sh:minCount 1`` unless
-also REQUIRED.
+also REQUIRED. Rules that depend on what a particular file declares (its TYPE
+and UNIT rows, ABBR/UNIT/TYPE groups: Rules 8, 15, 16, 17) are checked by
+:func:`ags_rdf.convert.check_file` when an AGS file is converted.
 """
 
 from __future__ import annotations
@@ -114,10 +115,19 @@ class ShapesBuilder:
             g.add((ps, iris.AGSO.rule, iris.rule("10b")))
         if h.is_key:
             g.add((ps, iris.AGSO.rule, iris.rule("10a")))
-        if len(spec.datatypes) == 1 and not spec.values:
-            g.add((ps, SH.datatype, spec.datatypes[0]))
-        elif spec.datatypes:
-            g.add((ps, SH.node, self._value_shape(g, spec)))
+        if spec.datatypes:
+            # The dictionary type is only *suggested*: a file may declare another TYPE (Rule 8),
+            # so a value outside its value space is a warning here. ags_rdf.convert checks values
+            # against the TYPE each file actually declares.
+            ts = iris.property_shape(grp.code, h.code, "-type")
+            self._warning(g, ns, ts, path,
+                          f"{h.code}: value is not of the suggested type {h.data_type} "
+                          f"({self._family(spec)}). This is allowed if the file's TYPE row declares "
+                          "another type (Rule 8).")
+            if len(spec.datatypes) == 1 and not spec.values:
+                g.add((ts, SH.datatype, spec.datatypes[0]))
+            else:
+                g.add((ts, SH.node, self._value_shape(g, spec)))
         # documentation / links
         if h.example:
             g.add((ps, SKOS.example, Literal(h.example)))
@@ -203,19 +213,43 @@ class ShapesBuilder:
 
     # ------------------------------------------------------------------- keys
     def _key_uniqueness(self, g: Graph, ns: URIRef, grp: Group) -> None:
+        """Rule 10a as two SPARQL constraints, written so that pySHACL/rdflib stays fast.
+
+        * ``<G>-key``: rows whose KEY fields all have values - a plain join on the
+          key values, so candidate duplicates are found through the index;
+        * ``<G>-key-null``: rows with a null KEY field (allowed by Rule 10a) - compared
+          with every row of the group, but guarded so it costs nothing otherwise.
+
+        The duplicate is named ``?xother`` (not ``?other``) on purpose: rdflib orders
+        triple patterns lexically, and this makes it evaluate the ``$this`` patterns
+        (whose subject is pre-bound) before looking for other rows.
+        """
         keys = [h.code for h in grp.keys]
-        lines = []
-        for i, k in enumerate(keys):
-            lines.append(f"    OPTIONAL {{ $this ags:{k} ?a{i} }} OPTIONAL {{ ?other ags:{k} ?b{i} }}")
-        filters = " && ".join(f'COALESCE(STR(?a{i}), "") = COALESCE(STR(?b{i}), "")' for i in range(len(keys)))
-        self._sparql(g, ns, self.iris.SH[f"{grp.code}-key"],
-                     f"Another {grp.code} record has the same combination of KEY fields "
-                     f"({', '.join(keys)}): {{?other}} (Rule 10a)",
-                     f"""SELECT $this ?other WHERE {{
-    ?other a ags:{grp.code} .
-    FILTER (?other != $this)
-{chr(10).join(lines)}
-    FILTER ({filters})
+        message = (f"Another {grp.code} record has the same combination of KEY fields "
+                   f"({', '.join(keys)}): {{?xother}} (Rule 10a)")
+        # Join on the group's own keys (e.g. MOND_DTIM), which are selective; keys inherited
+        # from parent groups (LOCA_ID, SAMP_ID...) are often shared by many rows, so they are
+        # only checked for the candidates found.
+        own = [k for k in keys if k.startswith(grp.code + "_")] or keys
+        this = "".join(f"    $this ags:{k} ?v{i} .\n" for i, k in enumerate(keys))
+        other = "".join(f"    ?xother ags:{k} ?v{i} .\n" for i, k in enumerate(keys) if k in own)
+        inherited = "".join(f"    FILTER EXISTS {{ ?xother ags:{k} ?v{i} }}\n"
+                            for i, k in enumerate(keys) if k not in own)
+        self._sparql(g, ns, self.iris.SH[f"{grp.code}-key"], message,
+                     f"""SELECT $this ?xother WHERE {{
+{this}{other}    FILTER (?xother != $this)
+{inherited}    FILTER EXISTS {{ ?xother a ags:{grp.code} }}
+}}""")
+        guard = " || ".join(f"NOT EXISTS {{ $this ags:{k} ?n{i} }}" for i, k in enumerate(keys))
+        optional = "".join(f"    OPTIONAL {{ $this ags:{k} ?a{i} }} OPTIONAL {{ ?xother ags:{k} ?b{i} }}\n"
+                           for i, k in enumerate(keys))
+        same = " && ".join(f'COALESCE(STR(?a{i}), "") = COALESCE(STR(?b{i}), "")' for i in range(len(keys)))
+        self._sparql(g, ns, self.iris.SH[f"{grp.code}-key-null"], message,
+                     f"""SELECT $this ?xother WHERE {{
+    {{ FILTER ({guard}) }}
+    ?xother a ags:{grp.code} .
+    FILTER (?xother != $this)
+{optional}    FILTER ({same})
 }}""")
 
     def _single_row(self, g: Graph, ns: URIRef, grp: Group, rule: str) -> None:
@@ -226,6 +260,20 @@ class ShapesBuilder:
     FILTER (?other != $this)
 }}""")
         g.add((c, self.iris.AGSO.rule, self.iris.rule(rule)))
+
+    @staticmethod
+    def _family(spec) -> str:
+        from .. import datatypes as dts
+
+        if spec.values:
+            return "one of " + ", ".join(spec.values)
+        if set(spec.datatypes) <= set(dts.NUMERIC):
+            return "a number"
+        if set(spec.datatypes) == set(dts.DATETIME):
+            return "an ISO 8601 date/time"
+        if spec.datatypes == dts.TEXT:
+            return "text"
+        return "a " + " or ".join(str(d).split("#")[-1] for d in spec.datatypes)
 
     # ------------------------------------------------------------ value shapes
     VALUE_SHAPE_NAMES = {"NUMERIC": "NumericValue", "DATETIME": "DateTimeValue",
