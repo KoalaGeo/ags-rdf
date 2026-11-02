@@ -115,6 +115,14 @@ with [python-ags4](https://pypi.org/project/python-ags4/)). Those `.ags` files s
 compiled from the AGS working group's repository, so they are a consistency check rather than an
 independent source. Full reports are in [`docs/checks/`](docs/checks/).
 
+Other dictionary PDFs can be compared by file or URL, e.g. the 4.1 and 4.2 editions on the AGS
+website (the table reader was written for the 4.0.4 layout, so check the report for headings
+reported "missing", which would mean the layout differs):
+
+```bash
+uv run ags-rdf check-pdf -r 4.2.0 --pdf https://www.ags.org.uk/content/uploads/2026/01/AGS-v-4-2-December-2025.pdf
+```
+
 | Release | Compared with | Groups | Headings | Field differences |
 |---|---|---|---|---|
 | 4.0.4 | PDF (Feb 2017) | 124 = 124 | 2101 = 2101 | 11 |

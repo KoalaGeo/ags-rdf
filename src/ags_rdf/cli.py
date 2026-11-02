@@ -165,8 +165,10 @@ def cmd_check_pdf(args) -> int:
 
     snap = _snapshot(args)
     rel = discover_releases(snap)[args.version]
-    if args.pdf:
-        report = compare_pdf(snap, rel, args.pdf, label=args.pdf.name)
+    if args.pdf and args.pdf.startswith(("http://", "https://")):
+        report = compare_pdf(snap, rel, _download(args.pdf, args.cache / "pdfs"), label=args.pdf)
+    elif args.pdf:
+        report = compare_pdf(snap, rel, Path(args.pdf), label=Path(args.pdf).name)
     else:
         report = compare_pdf(snap, rel, snap.path(args.pdf_path), label=snap.url_for(args.pdf_path))
     out = args.out / f"pdf-check-{args.version}.md"
@@ -175,6 +177,27 @@ def cmd_check_pdf(args) -> int:
     print(report.summary())
     print(f"Report: {out}")
     return 0
+
+
+def _download(url: str, folder: Path) -> Path:
+    """Download a file once into ``folder`` (used for PDFs given by URL)."""
+    import requests
+
+    from .sources import SourceError
+
+    dest = folder / url.rstrip("/").rsplit("/", 1)[-1]
+    if dest.is_file():
+        return dest
+    folder.mkdir(parents=True, exist_ok=True)
+    try:
+        r = requests.get(url, timeout=120, headers={"User-Agent": "ags-rdf"})
+        r.raise_for_status()
+    except requests.RequestException as e:
+        raise SourceError(f"could not download {url}: {e}") from e
+    if not r.content.startswith(b"%PDF"):
+        raise SourceError(f"{url} did not return a PDF")
+    dest.write_bytes(r.content)
+    return dest
 
 
 def cmd_check_dictionary(args) -> int:
@@ -240,7 +263,7 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("check-pdf", help="compare the JSON with the dictionary PDF (needs pdfplumber)")
     _common(p)
     p.add_argument("--release", "-r", dest="version", default="4.0.4")
-    p.add_argument("--pdf", type=Path, help="local PDF (default: the PDF in the source repository)")
+    p.add_argument("--pdf", help="local PDF file or URL (default: the 4.0.4 PDF in the source repository)")
     p.add_argument("--pdf-path", default="AGS4/downloads/AGS_4_0_4.pdf",
                    help="path of the PDF within the source repository")
     p.add_argument("--out", type=Path, default=Path("dist/checks"))
