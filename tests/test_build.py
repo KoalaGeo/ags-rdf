@@ -12,7 +12,8 @@ def test_build_writes_all_outputs(built):
     for vocab in ("dictionary", "abbreviations", "units", "data-types", "rules", "contaminant-codes"):
         for ext in ("ttl", "nt", "xlsx"):
             assert f"ags4-{v}-{vocab}.{ext}" in names
-    assert {"catalogue.ttl", "manifest.ttl", "data-quality.md", "validation.md", "issues.json"} <= names
+    assert {"catalogue.ttl", "manifest.ttl", "data-quality.md", "validation.md", "issues.json",
+            f"ags4-{v}-labels.ttl"} <= names
 
 
 def test_build_validation_passes(built):
@@ -24,7 +25,7 @@ def test_build_validation_passes(built):
 
 def test_outputs_parse_and_ttl_equals_nt(built):
     for p in built.files:
-        if p.suffix == ".ttl" and p.name.startswith("ags4-"):
+        if p.suffix == ".ttl" and p.name.startswith("ags4-") and p.parent.name != "background":
             nt = p.with_name(p.name[:-4] + ".nt")
             assert len(Graph().parse(p)) == len(Graph().parse(nt, format="nt")), p.name
 

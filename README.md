@@ -64,7 +64,8 @@ For each release, in `dist/<version>/`:
 | `vocabs/ags4-<v>-data-types.*` | SKOS: data TYPEs; generic `nDP`, `nSF`, `nSCI` with the specific `2DP`, `3SF`… used |
 | `vocabs/ags4-<v>-rules.*` | SKOS: the AGS4 rules; sub-rules (`10a`) narrower than main rules (`10`) |
 | `vocabs/ags4-<v>-contaminant-codes.*` | SKOS: ELRG/ERES contaminant & determinand codes |
-| `ags4-<v>-all.ttl` / `.nt` | everything above in one graph |
+| `ags4-<v>-all.ttl` / `.nt` | everything above in one graph (for triplestores; not a vocabulary file) |
+| `background/ags4-<v>-labels.ttl` | a label for every IRI the outputs use, for vocabulary viewers |
 | `catalogue.ttl`, `manifest.ttl` | DCAT catalogue and a Prez/KGM manifest of the folder |
 | `reports/data-quality.md`, `issues.json` | findings about the source JSON (see below) |
 | `reports/validation.md` | results of all validation checks |
@@ -337,6 +338,27 @@ uv run kurra file hierarchy dist/4.2.0/vocabs/ags4-4.2.0-rules.ttl
 uv sync --extra kgm
 uv run kgm load sparql dist/4.2.0/manifest.ttl http://localhost:3030/ags/
 ```
+
+## Publishing with prez-lite
+
+[prez-lite](https://github.com/Kurrawong/prez-lite) treats every `data/vocabs/*.ttl` as **one**
+vocabulary: it uses the first ConceptScheme in the file and lists every concept in the file under
+it. So only the six per-vocabulary files belong there: not `ags4-<v>-all.ttl` (six schemes), nor the
+ontology, shapes or catalogue (no scheme). The background labels go in `data/background/`.
+
+```bash
+uv run ags-rdf build
+```
+
+```bash
+uv run ags-rdf prez-lite ../prez-lite/data
+```
+
+This copies `dist/<v>/vocabs/*.ttl` and `dist/<v>/background/*.ttl` into the site and writes a
+prez-lite manifest when there is none (or when it finds the ags-rdf build manifest, whose paths do
+not fit prez-lite). It exits with an error that names any file in `data/vocabs/` that does not hold
+exactly one ConceptScheme. With that layout, prez-lite's `pnpm build:all-export` processes all six
+4.2.0 vocabularies (3,776 concepts) without errors.
 
 ## Licensing of the AGS content
 

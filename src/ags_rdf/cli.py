@@ -6,6 +6,7 @@ Commands::
     ags-rdf fetch                    download (scrape) the AGS4 JSON from GitLab into the cache
     ags-rdf build                    generate TTL, N-Triples and VocExcel XLSX (+ validation, reports)
     ags-rdf convert FILE.ags         convert AGS data files to RDF (--validate to check them)
+    ags-rdf prez-lite DATA_DIR       copy a built release into a prez-lite site's data/ folder
     ags-rdf check-pdf                compare the JSON with the published AGS dictionary PDF
     ags-rdf check-dictionary FILE    compare the JSON with an AGS standard dictionary (.ags) file
 
@@ -159,6 +160,18 @@ def cmd_convert(args) -> int:
     return worst
 
 
+def cmd_prez_lite(args) -> int:
+    from .publish import export_prez_lite, latest_release
+
+    version = args.version or latest_release(args.dist)
+    res = export_prez_lite(args.dist / version, args.data)
+    print(f"Copied {len(res.copied)} files from {args.dist / version} into {args.data} "
+          f"(vocabs/, background/); manifest.ttl {res.manifest}")
+    for p in res.problems:
+        print(f"  problem: {p}", file=sys.stderr)
+    return 1 if res.problems else 0
+
+
 def cmd_check_pdf(args) -> int:
     from .checks.pdf import compare_pdf
     from .releases import discover_releases
@@ -260,6 +273,12 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--base-iri", help="base IRI of the AGS model (must match the shapes you use)")
     p.set_defaults(func=cmd_convert)
 
+    p = sub.add_parser("prez-lite", help="copy a built release into a prez-lite site's data/ folder")
+    p.add_argument("data", type=Path, help="the prez-lite data/ folder, e.g. ../prez-lite/data")
+    p.add_argument("--release", "-r", dest="version", help="built release to copy (default: newest in --dist)")
+    p.add_argument("--dist", type=Path, default=Path("dist"), help="ags-rdf output folder (default: dist)")
+    p.set_defaults(func=cmd_prez_lite)
+
     p = sub.add_parser("check-pdf", help="compare the JSON with the dictionary PDF (needs pdfplumber)")
     _common(p)
     p.add_argument("--release", "-r", dest="version", default="4.0.4")
@@ -284,7 +303,7 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         return args.func(args)
-    except (SourceError, KeyError) as e:
+    except (SourceError, KeyError, FileNotFoundError) as e:
         print(f"ags-rdf: {e}", file=sys.stderr)
         return 2
 
