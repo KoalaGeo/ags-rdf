@@ -1,0 +1,47 @@
+# A small AGS 4.2 dataset expressed with the generated data model, for trying out the shapes:
+#   kurra shacl validate examples/ags4-sample.ttl dist/4.2.0/ags4-4.2.0-shapes.ttl
+# One DATA row = one resource typed with its GROUP's class; one FIELD = one triple;
+# agso:parent links a row to the row in its PARENT GROUP (AGS Rule 10c).
+PREFIX ags: <https://w3id.org/ags4/def/>
+PREFIX agso: <https://w3id.org/ags4/ont/>
+PREFIX ex: <https://example.org/project/121415/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+ex:proj a ags:PROJ ;
+    ags:PROJ_ID "121415" ;
+    ags:PROJ_NAME "ACME Gas Works Redevelopment" .
+
+ex:tran a ags:TRAN ;
+    ags:TRAN_ISNO "1" ;
+    ags:TRAN_DATE "2026-01-15"^^xsd:date ;
+    ags:TRAN_PROD "ACME Drilling Ltd" ;
+    ags:TRAN_STAT "FINAL" ;
+    ags:TRAN_AGS "4.2" ;
+    ags:TRAN_RECV "ACME Consulting" ;
+    ags:TRAN_RCON "+" .
+
+ex:BH1 a ags:LOCA ;
+    agso:parent ex:proj ;
+    ags:LOCA_ID "BH1" ;
+    ags:LOCA_TYPE "CP+RC" ;
+    ags:LOCA_STAT "FINAL" ;
+    ags:LOCA_NATE "523145.00"^^xsd:decimal ;
+    ags:LOCA_NATN "178456.12"^^xsd:decimal ;
+    ags:LOCA_GL "16.23"^^xsd:decimal ;
+    ags:LOCA_STAR "2026-01-05"^^xsd:date .
+
+ex:BH1-SAMP-1 a ags:SAMP ;
+    agso:parent ex:BH1 ;
+    ags:LOCA_ID "BH1" ;
+    ags:SAMP_TOP "1.50"^^xsd:decimal ;
+    ags:SAMP_REF "1" ;
+    ags:SAMP_TYPE "B" ;
+    ags:SAMP_ID "BH1-1" ;
+    ags:SAMP_BASE "2.00"^^xsd:decimal .
+
+ex:BH1-ISPT-1 a ags:ISPT ;
+    agso:parent ex:BH1 ;
+    ags:LOCA_ID "BH1" ;
+    ags:ISPT_TOP "2.00"^^xsd:decimal ;
+    ags:ISPT_NVAL "23"^^xsd:decimal ;
+    ags:ISPT_ROCK "N" .

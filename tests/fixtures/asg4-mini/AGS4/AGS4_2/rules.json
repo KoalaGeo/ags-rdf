@@ -1,0 +1,162 @@
+[
+ {
+  "display_sort_order": 1,
+  "Rule Ref": "1",
+  "Rule Description": "The data file shall be entirely composed of ASCII characters."
+ },
+ {
+  "display_sort_order": 2,
+  "Rule Ref": "2",
+  "Rule Description": "Each data file shall contain one or more data GROUPs.  Each data GROUP shall comprise a number of GROUP HEADER rows and must have one or more DATA rows."
+ },
+ {
+  "display_sort_order": 3,
+  "Rule Ref": "2a",
+  "Rule Description": "Each row is located on a separate line, delimited by a new line consisting of a carriage return (ASCII character 13) and a line feed (ASCII character 10)."
+ },
+ {
+  "display_sort_order": 4,
+  "Rule Ref": "2b",
+  "Rule Description": "The GROUP HEADER rows fully define the data presented within the DATA rows for that group (Rule 8). As a minimum, the GROUP HEADER rows comprise GROUP, HEADING, UNIT and TYPE rows presented in that order."
+ },
+ {
+  "display_sort_order": 5,
+  "Rule Ref": "3",
+  "Rule Description": "Each row in the data file must start with a DATA DESCRIPTOR that defines the contents of that row.  The following Data Descriptors are used as described below: <br>&bull; Each GROUP row shall be preceded by the \"GROUP\" Data Descriptor.<br>&bull; Each HEADING row shall be preceded by the \"HEADING\" Data Descriptor.<br>&bull; Each UNIT row shall be preceded by the \"UNIT\" Data Descriptor.<br>&bull; Each TYPE row shall be preceded by the \"TYPE\" Data Descriptor.<br>&bull; Each DATA row shall be preceded by the \"DATA\" Data Descriptor."
+ },
+ {
+  "display_sort_order": 6,
+  "Rule Ref": "4",
+  "Rule Description": "Within each GROUP, the DATA items are contained in data FIELDs. Each data FIELD contains a single data VARIABLE in each row.  Each DATA row of a data file will contain one or more data FIELDs.<br>The GROUP row contains only one DATA item, the GROUP name, in addition to the Data Descriptor (Rule 3). All other rows in the GROUP have a number of DATA items defined by the HEADING row."
+ },
+ {
+  "display_sort_order": 7,
+  "Rule Ref": "5",
+  "Rule Description": "DATA DESCRIPTORS, GROUP names, data field HEADINGs, data field UNITs, data field TYPEs, and data VARIABLEs shall be enclosed in double quotes (\"...\").  Any quotes within a data item must be defined with a second quote e.g. \"he said \"\"hello\"\"\"."
+ },
+ {
+  "display_sort_order": 8,
+  "Rule Ref": "6",
+  "Rule Description": "The DATA DESCRIPTORS, GROUP names, data field HEADINGs, data field UNITs, data field TYPEs, and data VARIABLEs in each line of the data file shall be separated by a comma (,).  No carriage returns (ASCII character 13) or line feeds (ASCII character 10) are allowed in or between data VARIABLEs within a DATA row."
+ },
+ {
+  "display_sort_order": 9,
+  "Rule Ref": "7",
+  "Rule Description": "The order of data FIELDs in each line within a GROUP is defined at the start of each GROUP in the HEADING row.  HEADINGs shall be in the order described in the AGS FORMAT DATA DICTIONARY."
+ },
+ {
+  "display_sort_order": 10,
+  "Rule Ref": "8",
+  "Rule Description": "Data VARIABLEs shall be presented in the units of measurement and type that are described by the appropriate data field UNIT and data field TYPE defined at the start of the GROUP within the GROUP HEADER rows."
+ },
+ {
+  "display_sort_order": 11,
+  "Rule Ref": "9",
+  "Rule Description": "Data HEADING and GROUP names shall be taken from the AGS FORMAT DATA DICTIONARY. In cases where there is no suitable entry, a user-defined GROUP and/or HEADING may be used in accordance with Rule 18. Any user-defined HEADINGs shall be included at the end of the HEADING row after the standard HEADINGs in the order defined in the DICT group (see Rule 18a)."
+ },
+ {
+  "display_sort_order": 12,
+  "Rule Ref": "10",
+  "Rule Description": "HEADINGs are defined as KEY, REQUIRED or OTHER.<br>&bull; KEY fields are necessary to uniquely define the data.<br>&bull; REQUIRED fields are necessary to allow interpretation of the data file.<br>&bull; OTHER fields are included depending on the scope of the data file and availability of data to be included."
+ },
+ {
+  "display_sort_order": 13,
+  "Rule Ref": "10a",
+  "Rule Description": "In every GROUP, certain HEADINGs are defined as KEY. There shall not be more than one row of data in each GROUP with the same combination of KEY field entries. KEY fields must appear in each GROUP, but may contain null data (see Rule 12)."
+ },
+ {
+  "display_sort_order": 14,
+  "Rule Ref": "10b",
+  "Rule Description": "Some HEADINGs are marked as REQUIRED. REQUIRED fields must appear in the data GROUPs where they are indicated in the AGS FORMAT DATA DICTIONARY. These fields require data entry and cannot be null (i.e. left blank or empty). "
+ },
+ {
+  "display_sort_order": 15,
+  "Rule Ref": "10c",
+  "Rule Description": "Links are made between data rows in GROUPs by the KEY fields.  Every entry made in the KEY fields in any GROUP must have an equivalent entry in its PARENT GROUP. The PARENT GROUP must be included within the data file."
+ },
+ {
+  "display_sort_order": 16,
+  "Rule Ref": "11",
+  "Rule Description": "HEADINGs defined as a data TYPE of 'Record Link' (RL) can be used to link data rows to entries in GROUPs outside of the defined hierarchy (Rule 10c) or DICT group for user defined GROUPs.<br>The GROUP name followed by the KEY FIELDs defining the cross-referenced data row, in the order presented in the AGS4 DATA DICTIONARY."
+ },
+ {
+  "display_sort_order": 17,
+  "Rule Ref": "11a",
+  "Rule Description": "Each GROUP/KEY FIELD shall be separated by a delimiter character. This single delimiter character shall be defined in TRAN_DLIM.  The default being \"|\" (ASCII character 124)."
+ },
+ {
+  "display_sort_order": 18,
+  "Rule Ref": "11b",
+  "Rule Description": "A heading of data TYPE 'Record Link' can refer to more than one combination of GROUP and KEY FIELDs.<br>The combination shall be separated by a defined concatenation character. This single concatenation character shall be defined in TRAN_RCON.  The default being \"+\" (ASCII character 43)."
+ },
+ {
+  "display_sort_order": 19,
+  "Rule Ref": "11c",
+  "Rule Description": "Any heading of data TYPE 'Record Link' included in a data file shall cross-reference to the KEY FIELDs of data rows in the GROUP referred to by the heading contents."
+ },
+ {
+  "display_sort_order": 20,
+  "Rule Ref": "12",
+  "Rule Description": "Data does not have to be included against each HEADING unless REQUIRED (Rule 10b).  The data FIELD can be null; a null entry is defined as \"\" (two quotes together)."
+ },
+ {
+  "display_sort_order": 21,
+  "Rule Ref": "13",
+  "Rule Description": "Each data file shall contain the PROJ GROUP which shall contain only one data row and, as a minimum, shall contain data under the headings defined as REQUIRED (Rule 10b)."
+ },
+ {
+  "display_sort_order": 22,
+  "Rule Ref": "14",
+  "Rule Description": "Each data file shall contain the TRAN GROUP which shall contain only one data row and, as a minimum, shall contain data under the headings defined as REQUIRED (Rule 10b)."
+ },
+ {
+  "display_sort_order": 23,
+  "Rule Ref": "15",
+  "Rule Description": "Each data file shall contain the UNIT GROUP to list all units used within the data file.<br>Every unit of measurement entered in the UNIT row of a GROUP or data entered in a FIELD where the field TYPE is defined as \"PU\" (for example ELRG_RUNI, GCHM_UNIT or MOND_UNIT FIELDs) shall be listed and defined in the UNIT GROUP."
+ },
+ {
+  "display_sort_order": 24,
+  "Rule Ref": "16",
+  "Rule Description": "Each data file shall contain the ABBR GROUP when abbreviations have been included in the data file.<br>The abbreviations listed in the ABBR GROUP shall include definitions for all abbreviations entered in a FIELD where the data TYPE is defined as \"PA\" or any abbreviation needing definition used within any other heading data type."
+ },
+ {
+  "display_sort_order": 25,
+  "Rule Ref": "16a",
+  "Rule Description": "Where multiple abbreviations are required to fully codify a FIELD, the abbreviations shall be separated by a defined concatenation character. This single concatenation character shall be defined in TRAN_RCON.  The default being \"+\" (ASCII character 43).<br>Each abbreviation used in such combinations shall be listed separately in the ABBR GROUP. e.g. \"CP+RC\" must have entries for both \"CP\" and \"RC\" in ABBR GROUP, together with their full definition."
+ },
+ {
+  "display_sort_order": 26,
+  "Rule Ref": "17",
+  "Rule Description": "Each data file shall contain the TYPE GROUP to define the field TYPEs used within the data file.<br>Every data type entered in the TYPE row of a GROUP shall be listed and defined in the TYPE GROUP."
+ },
+ {
+  "display_sort_order": 27,
+  "Rule Ref": "18",
+  "Rule Description": "Each data file shall contain the DICT GROUP where non-standard GROUP and HEADING names have been included in the data file."
+ },
+ {
+  "display_sort_order": 28,
+  "Rule Ref": "18a",
+  "Rule Description": "The order in which the user-defined HEADINGs are listed in the DICT GROUP shall define the order in which these HEADINGS are appended to an existing GROUP or appear in a user-defined GROUP.<br>This order also defines the sequence in which such HEADINGS are used in a heading of data TYPE 'Record Link' (Rule 11)."
+ },
+ {
+  "display_sort_order": 29,
+  "Rule Ref": "19",
+  "Rule Description": "A GROUP name shall not be more than 4 characters long and shall consist of uppercase letters and numbers only."
+ },
+ {
+  "display_sort_order": 30,
+  "Rule Ref": "19a",
+  "Rule Description": "A HEADING name shall not be more than 9 characters long and shall consist of uppercase letters, numbers or the underscore character only."
+ },
+ {
+  "display_sort_order": 31,
+  "Rule Ref": "19b",
+  "Rule Description": "HEADING names shall start with the GROUP name followed by an underscore character.e.g. \"NGRP_HED1\"<br>Where a HEADING refers to an existing HEADING within another GROUP, the HEADING name added to the group shall bear the same name. e.g. \"CMPG_TESN\" in the \"CMPT\" GROUP."
+ },
+ {
+  "display_sort_order": 32,
+  "Rule Ref": "20",
+  "Rule Description": "Additional computer files (e.g. digital images) can be included within a data submission. Each such file shall be defined in a FILE GROUP.<br>The additional files shall be transferred in a sub-folder named FILE. This FILE sub-folder shall contain additional sub-folders each named by the FILE_FSET reference. Each FILE_FSET named folder will contain the files listed in the FILE GROUP."
+ }
+]

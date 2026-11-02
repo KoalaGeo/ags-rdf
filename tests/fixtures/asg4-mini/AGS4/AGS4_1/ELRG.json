@@ -1,0 +1,362 @@
+[
+ {
+  "Code": "100-00-5",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Chloro-4,nitrobenzene",
+  "AGS_response": ""
+ },
+ {
+  "Code": "100-01-6",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "4-Nitroaniline",
+  "AGS_response": ""
+ },
+ {
+  "Code": "100-02-7",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "4-Nitrophenol",
+  "AGS_response": ""
+ },
+ {
+  "Code": "100-25-4",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "P-Dinitrobenzene",
+  "AGS_response": ""
+ },
+ {
+  "Code": "100-41-4",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Ethylbenzene",
+  "AGS_response": ""
+ },
+ {
+  "Code": "100-42-5",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Styrene",
+  "AGS_response": ""
+ },
+ {
+  "Code": "100-44-7",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Alpha-Chlorotoluene",
+  "AGS_response": ""
+ },
+ {
+  "Code": "100-47-0",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Benzonitrile",
+  "AGS_response": ""
+ },
+ {
+  "Code": "100-51-6",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Benzyl Alcohol",
+  "AGS_response": ""
+ },
+ {
+  "Code": "100-52-7",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Benzaldehyde",
+  "AGS_response": ""
+ },
+ {
+  "Code": "100-74-3",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "n-Ethylmorpholine",
+  "AGS_response": ""
+ },
+ {
+  "Code": "100-75-4",
+  "Date Last Reviewed": "17/10/2025",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "n-Nitrosopiperidine",
+  "AGS_response": "Description changed from \"n-nitrosopiperidine\"."
+ },
+ {
+  "Code": "10024-97-2",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Nitrous Oxide",
+  "AGS_response": ""
+ },
+ {
+  "Code": "10035-10-6",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Hydrobromide Acid",
+  "AGS_response": ""
+ },
+ {
+  "Code": "10043-66-0",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Iodine-131",
+  "AGS_response": ""
+ },
+ {
+  "Code": "10043-92-2",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Radon",
+  "AGS_response": ""
+ },
+ {
+  "Code": "10045-94-0",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Mercury (II) nitrate",
+  "AGS_response": ""
+ },
+ {
+  "Code": "10045-97-3",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Cesium-137",
+  "AGS_response": ""
+ },
+ {
+  "Code": "10049-04-4",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Chlorine Dioxide",
+  "AGS_response": ""
+ },
+ {
+  "Code": "10061-01-5",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "cis-1,3-Dichloropropene",
+  "AGS_response": ""
+ },
+ {
+  "Code": "10061-02-6",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "trans-1,3-Dichloropropene",
+  "AGS_response": ""
+ },
+ {
+  "Code": "10098-97-2",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Strontium-90",
+  "AGS_response": ""
+ },
+ {
+  "Code": "101-05-3",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Anilazine",
+  "AGS_response": ""
+ },
+ {
+  "Code": "101-21-3",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Chloropropham",
+  "AGS_response": ""
+ },
+ {
+  "Code": "101-27-9",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Barban",
+  "AGS_response": ""
+ },
+ {
+  "Code": "101-42-8",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Fenuron",
+  "AGS_response": ""
+ },
+ {
+  "Code": "101-55-3",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "4-Bromophenyl Phenyl Ether",
+  "AGS_response": ""
+ },
+ {
+  "Code": "101-77-9",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "4,4'-Methylene Dianiline",
+  "AGS_response": ""
+ },
+ {
+  "Code": "101-80-4",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "4,4'-Oxydianiline",
+  "AGS_response": ""
+ },
+ {
+  "Code": "101-84-8",
+  "Date Last Reviewed": "01/12/2022",
+  "version": "4.0,4.1",
+  "status": "Approved",
+  "description": "Diphenyl ether",
+  "AGS_response": ""
+ },
+ {
+  "Code": "P04443",
+  "Date Last Reviewed": "22/05/2026",
+  "version": "4.1,4.2",
+  "status": "Declined",
+  "description": "Atterberg Soil Class",
+  "AGS_response": "Declined as Atterberg testing is covered in LLPL Group"
+ },
+ {
+  "Code": "P04442",
+  "Date Last Reviewed": "22/05/2026",
+  "version": "4.1,4.2",
+  "status": "Declined",
+  "description": "Atterberg NHBC Modified Plasticity Index",
+  "AGS_response": "Declined as Atterberg testing covered in LLPL Group"
+ },
+ {
+  "Code": "P04441",
+  "Date Last Reviewed": "22/05/2026",
+  "version": "4.1,4.2",
+  "status": "Declined",
+  "description": "Atterberg Plastic Limit",
+  "AGS_response": "Declined as Atterberg testing covered in LLPL Group"
+ },
+ {
+  "Code": "P04440",
+  "Date Last Reviewed": "22/05/2026",
+  "version": "4.1,4.2",
+  "status": "Declined",
+  "description": "Atterberg Plasticity Index",
+  "AGS_response": "Declined as Atterberg testing covered in LLPL Group"
+ },
+ {
+  "Code": "P04439",
+  "Date Last Reviewed": "22/05/2026",
+  "version": "4.1,4.2",
+  "status": "Declined",
+  "description": "Atterberg 0.425mm Particle Size",
+  "AGS_response": "Declined as Atterberg testing covered in LLPL Group"
+ },
+ {
+  "Code": "P04438",
+  "Date Last Reviewed": "22/05/2026",
+  "version": "4.1,4.2",
+  "status": "Declined",
+  "description": "Atterberg Moisture Content",
+  "AGS_response": "Declined as Atterberg testing covered in LLPL Group"
+ },
+ {
+  "Code": "P04437",
+  "Date Last Reviewed": "22/05/2026",
+  "version": "4.1,4.2",
+  "status": "Declined",
+  "description": "Atterberg Liquid Limit",
+  "AGS_response": "Declined as Atterberg testing covered in LLPL Group"
+ },
+ {
+  "Code": "540-59-0",
+  "Date Last Reviewed": "28/08/2026",
+  "version": "4.1,4.2",
+  "status": "Accepted",
+  "description": "1,2-Dichloroethene",
+  "AGS_response": "Accepted 28/08/26"
+ },
+ {
+  "Code": "1303-28-2",
+  "Date Last Reviewed": "28/08/2026",
+  "version": "4.1,4.2",
+  "status": "Accepted",
+  "description": "Arsenic Pentoxide",
+  "AGS_response": "Accepted 28/08/26"
+ },
+ {
+  "Code": "22739-76-0",
+  "Date Last Reviewed": "28/08/2026",
+  "version": "4.1,4.2",
+  "status": "Accepted",
+  "description": "2-Propanol-d8",
+  "AGS_response": "Accepted 28/08/26"
+ },
+ {
+  "Code": "123-07-9",
+  "Date Last Reviewed": "28/08/2026",
+  "version": "4.1,4.2",
+  "status": "Accepted",
+  "description": "4-Ethylphenol",
+  "AGS_response": "Accepted 28/08/26"
+ },
+ {
+  "Code": "76-05-1",
+  "Date Last Reviewed": "28/08/2026",
+  "version": "4.1,4.2",
+  "status": "Accepted",
+  "description": "Trifluoroacetic acid",
+  "AGS_response": "Accepted 28/08/26"
+ },
+ {
+  "Code": "111-92-2",
+  "Date Last Reviewed": "28/08/2026",
+  "version": "4.1,4.2",
+  "status": "Accepted",
+  "description": "Dibutylamine",
+  "AGS_response": "Accepted 28/08/26"
+ },
+ {
+  "Code": "117704-25-3",
+  "Date Last Reviewed": "28/08/2026",
+  "version": "4.1,4.2",
+  "status": "Accepted",
+  "description": "Doramectin",
+  "AGS_response": "Accepted 28/08/26"
+ },
+ {
+  "Code": "103582-29-2",
+  "Date Last Reviewed": "28/08/2026",
+  "version": "4.1,4.2",
+  "status": "Accepted",
+  "description": "1,2,3,4,6,7,8,9-Octabromodibenzofuran",
+  "AGS_response": "Accepted 28/08/26"
+ }
+]

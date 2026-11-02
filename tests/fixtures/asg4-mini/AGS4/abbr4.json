@@ -1,0 +1,1302 @@
+[
+ {
+  "Group": "DICT_DTYP",
+  "Code": "0DP",
+  "Description": "Value; required number of decimal places, 0",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "0SCI",
+  "Description": "Scientific Notation; required number of decimal places, 0",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "1DP",
+  "Description": "Value; required number of decimal places, 1",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "1SCI",
+  "Description": "Scientific Notation; required number of decimal places, 1",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "1SF",
+  "Description": "Value; required number of significant figures, 1",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "2DP",
+  "Description": "Value; required number of decimal places, 2",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "2SCI",
+  "Description": "Scientific Notation; required number of decimal places, 2",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "2SF",
+  "Description": "Value; required number of significant figures, 2",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "3DP",
+  "Description": "Value; required number of decimal places, 3",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "3SCI",
+  "Description": "Scientific Notation; required number of decimal places, 3",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "3SF",
+  "Description": "Value; required number of significant figures, 3",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "4DP",
+  "Description": "Value; required number of decimal places, 4",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "4SCI",
+  "Description": "Scientific Notation; required number of decimal places, 4",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "4SF",
+  "Description": "Value; required number of significant figures, 4",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "DMS",
+  "Description": "Degrees:Minutes:Seconds",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "DT",
+  "Description": "Date time in international format",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "ID",
+  "Description": "Unique Identifier",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "MC",
+  "Description": "British Standard BS1377 : Part 2 reported moisture content",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "PA",
+  "Description": "Text listed in ABBR Group",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "PT",
+  "Description": "Text listed in TYPE Group",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "PU",
+  "Description": "Text listed in UNIT Group",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "RL",
+  "Description": "Record link",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "T",
+  "Description": "Elapsed time",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "U",
+  "Description": "Value with variable format",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "X",
+  "Description": "Text",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "XN",
+  "Description": "Text / numeric",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_DTYP",
+  "Code": "YN",
+  "Description": "Y or N or NULL",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_STAT",
+  "Code": "KEY",
+  "Description": "Key field",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_STAT",
+  "Code": "OTHER",
+  "Description": "Other field",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_STAT",
+  "Code": "REQUIRED",
+  "Description": "Required field",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_STAT",
+  "Code": "DEPRECATED",
+  "Description": "Deprecated field",
+  "Status": "Approved",
+  "Date": "23/04/2025",
+  "Comments": "",
+  "Version": "4.1,4.2"
+ },
+ {
+  "Group": "DICT_TYPE",
+  "Code": "GROUP",
+  "Description": "Flag to indicate definition is a GROUP",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "DICT_TYPE",
+  "Code": "HEADING",
+  "Description": "Flag to indicate definition is a HEADING",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_STAT",
+  "Code": "DRAFT",
+  "Description": "Draft data",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_STAT",
+  "Code": "FINAL",
+  "Description": "Final data",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_STAT",
+  "Code": "HISTORIC",
+  "Description": "Historical data converted from paper records",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_STAT",
+  "Code": "PRELIM",
+  "Description": "Preliminary data",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_STAT",
+  "Code": "PROPOSED",
+  "Description": "Proposed data",
+  "Status": "Approved",
+  "Date": "08/12/2020",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "ABS",
+  "Description": "Automatic Ballast Sampler",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "AUG",
+  "Description": "Hollow/Solid Stem Auger",
+  "Status": "Declined",
+  "Date": "10/11/2017",
+  "Comments": "Propose these as 2 separate codes",
+  "Version": "4.0"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "AUGH",
+  "Description": "Hollow Stem Auger",
+  "Status": "Approved",
+  "Date": "08/12/2017",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "AUGS",
+  "Description": "Solid Stem Auger",
+  "Status": "Approved",
+  "Date": "08/12/2017",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "CC",
+  "Description": "Concrete core",
+  "Status": "Approved",
+  "Date": "24/12/2013",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "CH",
+  "Description": "Slope surface protection stripping",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "CP",
+  "Description": "Cable percussion (shell and auger)",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "CP+RC",
+  "Description": "Cable percussion (shell and auger) with Rotary follow on",
+  "Status": "Declined",
+  "Date": "13/04/2017",
+  "Comments": "This is already possible by combining the hole types using AGS rules",
+  "Version": "4.0"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "DCP",
+  "Description": "Dynamic cone penetrometer",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "DP",
+  "Description": "Dynamic probe sampling",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "DS",
+  "Description": "Dynamic Sampler",
+  "Status": "Approved",
+  "Date": "22/08/2016",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "DWS",
+  "Description": "Drinking water sampling location",
+  "Status": "Declined",
+  "Date": "21/09/2021",
+  "Comments": "See SLDW/SLSP/SLSW entries instead",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "EH",
+  "Description": "Exploratory Hole",
+  "Status": "Approved",
+  "Date": "26/09/2012",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "EXP",
+  "Description": "Logged exposure",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "GCOP",
+  "Description": "GCO probe",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "HA",
+  "Description": "Hand Auger",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "ICBR",
+  "Description": "In situ CBR test",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "IDEN",
+  "Description": "In situ density test",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "INST",
+  "Description": "instrument",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "IP",
+  "Description": "Inspection pit",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "IPLT",
+  "Description": "In situ plate loading test",
+  "Status": "Approved",
+  "Date": "13/01/2014",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "IRDX",
+  "Description": "In situ redox test",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "IRES",
+  "Description": "In situ resistivity",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "IVAN",
+  "Description": "In situ vane test",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "LSW",
+  "Description": "Landfill Spike/Pin Well",
+  "Status": "Approved",
+  "Date": "21/09/2021",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "MSTP",
+  "Description": "Mostap sampling position",
+  "Status": "Approved",
+  "Date": "01/02/2018",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "OP",
+  "Description": "Observation pit/trench",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "PC",
+  "Description": "Pavement core",
+  "Status": "Approved",
+  "Date": "03/11/2017",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "PM",
+  "Description": "Pressuremeter test hole",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "PPR",
+  "Description": "Peat probe",
+  "Status": "Approved",
+  "Date": "28/10/2016",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "RC",
+  "Description": "Rotary cored",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "RCG",
+  "Description": "Rotary drilling in common ground",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "RO",
+  "Description": "Rotary open hole",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "RPC",
+  "Description": "Russian Peat Corer",
+  "Status": "Approved",
+  "Date": "13/12/2017",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "SCC",
+  "Description": "Seismic Cone Penetration Test",
+  "Status": "Declined",
+  "Date": "19/03/2018",
+  "Comments": "Conventionally seismic cone is recognised as SCPT although would not follow the current code convention for CPT as SCP. There are various other CPT combinations to consider also: seismic, pressuremeter, as well as other push-in methods: Marchetti, va",
+  "Version": "4.0"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "SCP",
+  "Description": "Static cone penetrometer",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "SH",
+  "Description": "Shaft",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "SL",
+  "Description": "Sampling Location",
+  "Status": "Approved",
+  "Date": "07/09/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "SNC",
+  "Description": "Sonic core drilling",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "SLDW",
+  "Description": "Sampling Location - Drinking water",
+  "Status": "Approved",
+  "Date": "21/09/2021",
+  "Comments": "Can be used for drinking water tap/potable water source",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "SLSP",
+  "Description": "Sampling Location - Stockpile",
+  "Status": "Approved",
+  "Date": "21/09/2021",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "SLSW",
+  "Description": "Sampling Location - Surface water",
+  "Status": "Approved",
+  "Date": "21/09/2021",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "STC",
+  "Description": "Structure Coring",
+  "Status": "Approved",
+  "Date": "23/06/2017",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "SPR",
+  "Description": "Bioremediation spray location",
+  "Status": "Approved",
+  "Date": "24/09/2024",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "SW",
+  "Description": "Surface water sample",
+  "Status": "Declined",
+  "Date": "29/01/2018",
+  "Comments": "",
+  "Version": "4.0"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "SWS",
+  "Description": "Surface Water Sample",
+  "Status": "Declined",
+  "Date": "27/02/2019",
+  "Comments": "See SLDW/SLSP/SLSW entries instead",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "TMP",
+  "Description": "Tidal Monitoring Point",
+  "Status": "Approved",
+  "Date": "09/12/2014",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "TMP",
+  "Description": "Tidal Monitoring Point",
+  "Status": "Declined",
+  "Date": "09/12/2014",
+  "Comments": "Duplicate",
+  "Version": "4.0"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "TMP",
+  "Description": "Tidal monitoring point",
+  "Status": "Declined",
+  "Date": "10/12/2014",
+  "Comments": "Duplicate",
+  "Version": "4.0"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "TP",
+  "Description": "Trial pit/trench",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "TRAV",
+  "Description": "Linear logging traverse or scanline survey",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "TT",
+  "Description": "Trial trench",
+  "Status": "Approved",
+  "Date": "02/10/2019",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "VC",
+  "Description": "Vibrocore",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "VE",
+  "Description": "Vacuum Excavation",
+  "Status": "Approved",
+  "Date": "01/11/2013",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "W",
+  "Description": "Wash boring",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "WLS",
+  "Description": "Dynamic (windowless) sampler",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "WLS+RC",
+  "Description": "Dynamic (windowless) sampler with Rotary follow on",
+  "Status": "Declined",
+  "Date": "13/04/2017",
+  "Comments": "This is already possible by combining the hole types using AGS rules",
+  "Version": "4.0"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "WS",
+  "Description": "Window Sampler",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "IJ",
+  "Description": "Injection Point",
+  "Status": "Approved",
+  "Date": "16/07/2024",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "ACM",
+  "Description": "suspected asbestos-containing material separate sample. The same as \"bulk sample\" which would be taken by asbestos building surveyor.",
+  "Status": "Declined",
+  "Date": "07/01/2020",
+  "Comments": "Not appropriate for SAMP_TYPE",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "AMAL",
+  "Description": "Amalgamated sample",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "B",
+  "Description": "Bulk disturbed sample",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "BC",
+  "Description": "Box Core",
+  "Status": "Declined",
+  "Date": "04/06/2015",
+  "Comments": "The data should be stored in WINS group.",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "BLK",
+  "Description": "Block sample",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "C",
+  "Description": "Core sample",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "CB",
+  "Description": "Concrete Cube",
+  "Status": "Declined",
+  "Date": "07/03/2013",
+  "Comments": "Use abbreviation CONCB",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "CBR",
+  "Description": "CBR mould sample",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "COMP",
+  "Description": "Composite sample - where the sample is made up of material from disparate unrecorded locations, coned and quartered into one composite sample",
+  "Status": "Approved",
+  "Date": "19/07/2019",
+  "Comments": "For the case where the sample is made up of material from disparate locations, coned and quartered into one composite sample.",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "CONCB",
+  "Description": "Concrete Cube",
+  "Status": "Approved",
+  "Date": "07/03/2013",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "CONCC",
+  "Description": "Concrete Core",
+  "Status": "Approved",
+  "Date": "07/03/2013",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "CR",
+  "Description": "Concrete Core",
+  "Status": "Declined",
+  "Date": "07/03/2013",
+  "Comments": "Use abbreviation CONCC",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "D",
+  "Description": "Small disturbed sample",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "DUP",
+  "Description": "Duplicate, i.e. a second sample taken for geoenvironmental testing at sample exploratory hole and same depth. First sample would be \"ES\" SAMP_TYPE and second sample would be \"DUP\".",
+  "Status": "Declined",
+  "Date": "07/01/2020",
+  "Comments": "This is not a sample type.",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "EA",
+  "Description": "suspected asbestos debris sample from ground for environmental testing",
+  "Status": "Declined",
+  "Date": "03/04/2018",
+  "Comments": "Too specific",
+  "Version": "4.0"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "ED",
+  "Description": "Small disturbed sample for geotechnical chemistry testing",
+  "Status": "Declined",
+  "Date": "20/03/2018",
+  "Comments": "The sample type prefix E is used for environmental testing, so a more logical code here might be GD. However, we do not distinguish geotech sample types by the testing intended - bulk, U, etc samples, might also be used for geochem (pH/SO4 etc) testi",
+  "Version": "4.0"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "ES",
+  "Description": "Soil sample for environmental testing",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "EV",
+  "Description": "Vapour sample for environmental testing",
+  "Status": "Proposed",
+  "Date": "20/02/2020",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "EW",
+  "Description": "Water sample for environmental testing",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "EWG",
+  "Description": "Water sample for environmental testing - Groundwater",
+  "Status": "Declined",
+  "Date": "19/02/2020",
+  "Comments": "Use SAMP_MATX instead",
+  "Version": "4.0"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "EWS",
+  "Description": "Water sample for environmental testing - Surface water",
+  "Status": "Declined",
+  "Date": "19/02/2020",
+  "Comments": "Use SAMP_MATX instead",
+  "Version": "4.0"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "FP",
+  "Description": "Free Product Sample",
+  "Status": "Declined",
+  "Date": "14/06/2017",
+  "Comments": "Not appropriate sample classification",
+  "Version": "4.0"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "G",
+  "Description": "Gas sample",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "GC",
+  "Description": "Gravity Core",
+  "Status": "Proposed",
+  "Date": "04/06/2015",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "L",
+  "Description": "Liner sample (dynamic)",
+  "Status": "Approved",
+  "Date": "01/02/2018",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "LB",
+  "Description": "Large bulk disturbed sample (for earthworks testing)",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "M",
+  "Description": "Mazier type sample",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "MOS",
+  "Description": "Mostap sample",
+  "Status": "Approved",
+  "Date": "01/02/2018",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "P",
+  "Description": "Piston sample",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "pACM",
+  "Description": "Potential asbestos sample.",
+  "Status": "Declined",
+  "Date": "24/10/2017",
+  "Comments": "",
+  "Version": "4.0"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "ROOT",
+  "Description": "Root(s) or rootlets",
+  "Status": "Declined",
+  "Date": "21/02/2014",
+  "Comments": "",
+  "Version": "4.0"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "SC",
+  "Description": "STACORE",
+  "Status": "Proposed",
+  "Date": "04/06/2015",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "Solid BSEN3",
+  "Description": "Lab prepared Leachate",
+  "Status": "Declined",
+  "Date": "12/03/2020",
+  "Comments": "This is not a sample type. Use ES instead.",
+  "Version": "4.0"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "SPTLS",
+  "Description": "Standard penetration test liner sample",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "TW",
+  "Description": "Thin walled push in sample",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "U",
+  "Description": "Undisturbed sample - open drive",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "UT",
+  "Description": "Thin wall open drive tube sampler",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "VC",
+  "Description": "Vibro Core",
+  "Status": "Proposed",
+  "Date": "04/06/2015",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "W",
+  "Description": "Water sample",
+  "Status": "Approved",
+  "Date": "25/05/2010",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "DSPT",
+  "Description": "Standard penetration test split spoon sample without liner",
+  "Status": "Declined",
+  "Date": "24/02/2021",
+  "Comments": "Use a SAMP_TYPE of D and SAMP_TECH (Sampling technique/method) should be used to record this information. The suggestion is to use the text 'SPT'",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "WP",
+  "Description": "Wellpoint",
+  "Status": "Approved",
+  "Date": "26/04/2022",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "SAMP_TYPE",
+  "Code": "STACK",
+  "Description": "Stack emmision sample type",
+  "Status": "Declined",
+  "Date": "26/04/2022",
+  "Comments": "STACK is a sampling location, not a sample type",
+  "Version": "4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "GC",
+  "Description": "Gravity Core",
+  "Status": "Approved",
+  "Date": "19/12/2023",
+  "Comments": "",
+  "Version": "4.0,4.1,4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "BPT",
+  "Description": "Ball penetrometer",
+  "Status": "Approved",
+  "Date": "31/12/2025",
+  "Version": "4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "CPT",
+  "Description": "Electrical cone penetration test or electrical piezocone test",
+  "Status": "Approved",
+  "Date": "31/12/2025",
+  "Version": "4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "GAMC",
+  "Description": "Gamma cone",
+  "Status": "Approved",
+  "Date": "31/12/2025",
+  "Version": "4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "MGC",
+  "Description": "Magnetometer cone",
+  "Status": "Approved",
+  "Date": "31/12/2025",
+  "Version": "4.2"
+ },
+ {
+  "Group": "LOCA_TYPE",
+  "Code": "T-BAR",
+  "Description": "T-Bar penetrometer",
+  "Status": "Approved",
+  "Date": "31/12/2025",
+  "Version": "4.2"
+ }
+]

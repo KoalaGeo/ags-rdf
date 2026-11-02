@@ -1,0 +1,24 @@
+# Copy to ags-rdf.toml and pass with: ags-rdf build --config ags-rdf.toml
+
+# Base for every generated IRI. The default (https://w3id.org/ags4/) is a
+# placeholder that is NOT registered with w3id.org - register it or use your own.
+base_iri = "https://w3id.org/ags4/"
+
+# Register entries (abbreviations, units, contaminant codes) with these
+# statuses become concepts. Add "proposed" / "declined" to include those too.
+register_statuses = ["approved", "accepted", "deprecated"]
+
+# Pick-list headings with more standard codes than this get no warning pattern.
+max_pattern_codes = 1000
+
+# Publisher of the generated RDF (VocPub requires an organisation with a URL).
+[publisher]
+iri = "https://github.com/KoalaGeo"
+name = "KoalaGeo"
+url = "https://github.com/KoalaGeo"
+
+# The JSON "Version" tags are followed strictly. To also accept register entries
+# tagged for an earlier family (e.g. the ELRG contaminant codes, most of which are
+# tagged "4.0,4.1" only), uncomment:
+# [register_version_fallbacks]
+# "4.2" = ["4.1"]
