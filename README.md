@@ -116,8 +116,8 @@ compiled from the AGS working group's repository, so they are a consistency chec
 independent source. Full reports are in [`docs/checks/`](docs/checks/).
 
 Other dictionary PDFs can be compared by file or URL, e.g. the 4.1 and 4.2 editions on the AGS
-website (the table reader was written for the 4.0.4 layout, so check the report for headings
-reported "missing", which would mean the layout differs):
+website (the table reader reads the 4.0.4 and 4.2 layouts; headings reported "missing" would mean a
+layout it does not understand):
 
 ```bash
 uv run ags-rdf check-pdf -r 4.2.0 --pdf https://www.ags.org.uk/content/uploads/2026/01/AGS-v-4-2-December-2025.pdf
@@ -128,16 +128,24 @@ uv run ags-rdf check-pdf -r 4.2.0 --pdf https://www.ags.org.uk/content/uploads/2
 | 4.0.4 | PDF (Feb 2017) | 124 = 124 | 2101 = 2101 | 11 |
 | 4.0.4 | standard dictionary | 124 = 124 | 2101 = 2101 | 13 |
 | 4.1.1 | standard dictionary | 148 = 148 | 2895 = 2895 | 5 |
+| 4.2.0 | PDF (Dec 2025, from the AGS website) | 171 = 171 | 3412 = 3412 | 1 |
 | 4.2.0 | standard dictionary | 171 = 171 | 3412 = 3412 | 0 |
 
-**Conclusion: the JSON matches.** Every group and heading, the heading order, KEY/REQUIRED status
-and suggested units agree. The few differences are wording or examples; the notable ones in 4.0.4
-are where the JSON was not updated with the 4.0.4 PDF:
+The 4.2.0 PDF comparison was run outside this environment (the AGS website is not reachable from
+it); its report lists 48 more "unit" differences, all PDF line-wrap artefacts (`hh:mm:ss` read
+back as `hh:mm:s s`) that the checker now ignores.
 
-- `WINS` title: JSON "Window or Windowless Sampling Run Details", PDF "Dynamic Sampling Run Details"
-  (4.0.4 renamed window sampling to dynamic sampling).
-- `GCHM_DLM`: JSON "Detection limit" / type `X`, PDF "Limit of detection" / type `U`.
-- `HDPH_CONT`: JSON "Drilling contractor", PDF "Contractor"; `LBST_TEST` example `LLPL` vs `Suite A`.
+**Conclusion: the JSON matches.** Every group and heading, the heading order, KEY/REQUIRED status,
+data types and suggested units agree. The few differences are wording or examples, and in each case
+the JSON had not been updated to match the PDF:
+
+- 4.2.0 `ISTG_LINK` example: JSON `SCPG|327-16A|3`, PDF `CPTG|327-16A|3` (SCPG is deprecated in 4.2;
+  CPTG replaces it).
+- 4.0.4 `WINS` title: JSON "Window or Windowless Sampling Run Details", PDF "Dynamic Sampling Run
+  Details" (4.0.4 renamed window sampling to dynamic sampling).
+- 4.0.4 `GCHM_DLM`: JSON "Detection limit" / type `X`, PDF "Limit of detection" / type `U`.
+- 4.0.4 `HDPH_CONT`: JSON "Drilling contractor", PDF "Contractor"; `LBST_TEST` example `LLPL` vs
+  `Suite A`.
 
 ## Source data quality
 

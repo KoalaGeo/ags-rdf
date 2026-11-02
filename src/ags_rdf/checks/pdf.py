@@ -24,6 +24,7 @@ from ..sources import Snapshot
 GROUP_TITLE = re.compile(r"Group Name:\s*([A-Z0-9]{4})\s*[-–]\s*(.+)", re.S)
 HEADING = re.compile(r"^[A-Z0-9]{2,4}_[A-Z0-9_]+$")
 FIELDS = ("status", "unit", "data_type", "description", "example")
+COMPACT_FIELDS = ("unit", "data_type")  # compared ignoring whitespace (column wrapping)
 
 
 @dataclass
@@ -182,6 +183,9 @@ def compare_tables(d, other_groups: dict[str, str], rows: list[PdfHeading], rep:
                 continue
             for f in FIELDS:
                 jv, pv = _norm(getattr(h, f)), getattr(p, f)
+                if f in COMPACT_FIELDS:
+                    # narrow PDF columns wrap units mid-token ("yyyy-mm-ddThh:m" / "m")
+                    jv, pv = re.sub(r"\s+", "", jv), re.sub(r"\s+", "", pv)
                 if jv != pv:
                     rep.differences.append(Difference(grp.code, h.code, f, getattr(h, f), pv, p.page))
         for c in pdf_codes:

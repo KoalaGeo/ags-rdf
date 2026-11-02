@@ -32,3 +32,20 @@ def test_standard_dictionary_differences(tmp_path, snapshot, release, dictionary
     rep = compare_standard_dictionary(snapshot, release, p)
     assert [(d.group, d.heading, d.field) for d in rep.differences] == [("LOCA", "LOCA_NATE", "description")]
     assert "LOCA_NATE" in rep.to_markdown()
+
+
+def test_pdf_unit_wrapping_is_not_a_difference(snapshot, release, dictionary):
+    """Narrow PDF columns wrap units mid-token, e.g. 'hh:mm:ss' read back as 'hh:mm:s s'."""
+    from ags_rdf.checks.pdf import PdfHeading, PdfReport, compare_tables
+
+    groups = {code: g.description for code, g in dictionary.groups.items()}
+    rows = []
+    for g in dictionary.groups.values():
+        for i, h in enumerate(g.headings, start=1):
+            unit = h.unit[:-1] + " " + h.unit[-1] if len(h.unit) > 3 else h.unit
+            rows.append(PdfHeading(g.code, h.code, i, h.status, unit, h.data_type, h.description, h.example, 1))
+    rep = compare_tables(dictionary, groups, rows, PdfReport("4.2.0", "x.pdf", "x.json"))
+    assert rep.differences == []
+    rows[0].description = "changed"
+    rep = compare_tables(dictionary, groups, rows, PdfReport("4.2.0", "x.pdf", "x.json"))
+    assert [d.field for d in rep.differences] == ["description"]
